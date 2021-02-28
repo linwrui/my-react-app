@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Game } from './components/board-game';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './index.less';
+import { SiderLayout } from './layout';
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+const routing = (
+    <Router>
+        <div>
+            <Route path='/' component={SiderLayout} />
+        </div>
+    </Router>
+);
+
+ReactDOM.render(routing, document.getElementById('root'));
