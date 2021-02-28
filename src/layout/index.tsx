@@ -35,14 +35,14 @@ export class SiderLayout extends React.Component {
                     <Menu
                         theme='dark'
                         mode='inline'
-                        defaultSelectedKeys={['1']}>
-                        <Menu.Item key='1' icon={<UserOutlined />}>
+                        defaultSelectedKeys={['game']}>
+                        <Menu.Item key='game' icon={<UserOutlined />}>
                             <Link to='/game'>Game</Link>
                         </Menu.Item>
-                        <Menu.Item key='2' icon={<VideoCameraOutlined />}>
+                        <Menu.Item key='nav1' icon={<VideoCameraOutlined />}>
                             <Link to='/nav1'>nav1</Link>
                         </Menu.Item>
-                        <Menu.Item key='3' icon={<UploadOutlined />}>
+                        <Menu.Item key='nav2' icon={<UploadOutlined />}>
                             <Link to='/nav2'>nav2</Link>
                         </Menu.Item>
                     </Menu>
