@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
@@ -91,8 +92,8 @@ class Game extends React.Component<any, any> {
             // 每当一个列表重新渲染时，React 会根据每一项列表元素的 key 来检索上一次渲染时与每个 key 所匹配的列表项。
             // 组件的 key 值并不需要在全局都保证唯一，只需要在当前的同一级元素之前保证唯一即可。
             return (
-                <li style={{ padding: '5px' }} key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                <li style={{ margin: '5px' }} key={move}>
+                    <Button onClick={() => this.jumpTo(move)}>{desc}</Button>
                 </li>
             );
         });
