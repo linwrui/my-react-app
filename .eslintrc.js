@@ -6,22 +6,21 @@ module.exports = {
     },
     extends: [
         // 'eslint:recommended',
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
     ],
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
         },
         ecmaVersion: 12,
-        sourceType: "module",
+        sourceType: 'module',
     },
-    plugins: ["react", "prettier", "@typescript-eslint"],
-    ignorePatterns: ["config/**"],
+    plugins: ['react', '@typescript-eslint'],
     rules: {
-        "@typescript-eslint/no-explicit-any": ["off"],
-        "@typescript-eslint/triple-slash-reference": ["off"],
+        '@typescript-eslint/no-explicit-any': ['off'],
+        '@typescript-eslint/triple-slash-reference': ['off'],
     },
 };

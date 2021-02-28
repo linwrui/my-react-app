@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.less";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.less';
 function Square(props: any) {
     return (
-        <button className="square" onClick={props.onClick}>
+        <button className='square' onClick={props.onClick}>
             {props.value}
         </button>
     );
@@ -22,17 +22,17 @@ class Board extends React.Component<any> {
     render() {
         return (
             <div>
-                <div className="board-row">
+                <div className='board-row'>
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
                     {this.renderSquare(2)}
                 </div>
-                <div className="board-row">
+                <div className='board-row'>
                     {this.renderSquare(3)}
                     {this.renderSquare(4)}
                     {this.renderSquare(5)}
                 </div>
-                <div className="board-row">
+                <div className='board-row'>
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
@@ -62,7 +62,7 @@ class Game extends React.Component<any, any> {
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
-        squares[i] = this.state.xIsNext ? "X" : "O";
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState({
             history: history.concat([
                 {
@@ -86,12 +86,12 @@ class Game extends React.Component<any, any> {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step: number, move: number) => {
-            const desc = move ? "Go to move #" + move : "Go to game start";
+            const desc = move ? 'Go to move #' + move : 'Go to game start';
 
             // 每当一个列表重新渲染时，React 会根据每一项列表元素的 key 来检索上一次渲染时与每个 key 所匹配的列表项。
             // 组件的 key 值并不需要在全局都保证唯一，只需要在当前的同一级元素之前保证唯一即可。
             return (
-                <li style={{ padding: "5px" }} key={move}>
+                <li style={{ padding: '5px' }} key={move}>
                     <button onClick={() => this.jumpTo(move)}>{desc}</button>
                 </li>
             );
@@ -99,21 +99,21 @@ class Game extends React.Component<any, any> {
 
         let status;
         if (winner) {
-            status = "Winner: " + winner;
+            status = 'Winner: ' + winner;
         } else {
-            status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
 
         return (
-            <div className="game">
-                <div className="game-board">
+            <div className='game'>
+                <div className='game-board'>
                     <Board
                         squares={current.squares}
                         onClick={(i: number) => this.handleClick(i)}
                     />
                 </div>
-                <div className="game-info">
-                    <div style={{ fontWeight: "bold" }}>{status}</div>
+                <div className='game-info'>
+                    <div style={{ fontWeight: 'bold' }}>{status}</div>
                     <ol>{moves}</ol>
                 </div>
             </div>
@@ -123,7 +123,7 @@ class Game extends React.Component<any, any> {
 
 // ========================================
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(<Game />, document.getElementById('root'));
 function calculateWinner(squares: string[]) {
     const lines = [
         [0, 1, 2],

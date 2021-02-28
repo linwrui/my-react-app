@@ -2,7 +2,7 @@
 // npm: https://www.npmjs.com/package/react-app-rewired
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { override, addLessLoader } = require("customize-cra");
+const { override, addLessLoader } = require('customize-cra');
 
 module.exports = override(
     // 引入 lessLoader，注意 lessLoader 要用低版本，否则可能出现 getOptions 为空的BUG
@@ -10,6 +10,6 @@ module.exports = override(
     // https://github.com/timarney/react-app-rewired/issues/348#issuecomment-452199363
     addLessLoader({
         javascriptEnabled: true,
-        modifyVars: { "@primary-color": "#1DA57A" },
+        modifyVars: { '@primary-color': '#1DA57A' },
     })
 );
