@@ -10,6 +10,9 @@ module.exports = override(
     // https://github.com/timarney/react-app-rewired/issues/348#issuecomment-452199363
     addLessLoader({
         javascriptEnabled: true,
-        modifyVars: { '@primary-color': '#1DA57A' },
+        modifyVars: {
+            // 这里可以配置一些默认的 less 变量
+            // '@primary-color': '#1DA57A'
+        },
     })
 );
