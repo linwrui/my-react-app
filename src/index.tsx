@@ -107,6 +107,9 @@ class Game extends React.Component<any, any> {
         return (
             <div className='game'>
                 <div className='game-board'>
+                    {winner ? (
+                        <div className='winner'>{'winner: ' + winner}</div>
+                    ) : null}
                     <Board
                         squares={current.squares}
                         onClick={(i: number) => this.handleClick(i)}
