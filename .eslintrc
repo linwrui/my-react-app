@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-typescript",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "createDefaultProgram": true
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "prettier/prettier": 0,
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/triple-slash-reference": ["off"],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "max-classes-per-file": ["error", 6],
+    "react/destructuring-assignment": ["error", "always", { "ignoreClassFields": true }],
+    "import/prefer-default-export": ["off"],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["config-overrides.js", "**/*.test.js", "**/*.spec.js"]}]
+  }
+}
