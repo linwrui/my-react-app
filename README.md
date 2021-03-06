@@ -1,3 +1,10 @@
+# Primary Library Used
+* `react` / `react-dom` / `react-router-dom`
+* `typescript`
+* `less` / `less-loader`
+* `react-app-rewired`
+* `eslint`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
