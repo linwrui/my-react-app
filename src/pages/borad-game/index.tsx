@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import React from 'react';
-import './index.less';
+import './style.less';
 
 function Square(props: any) {
   const { onClick, value } = props;

@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import './index.less';
-import { SiderLayout } from './layout';
+import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import './style.less';
+import { SiderLayout } from './sider-layout';
 
 const routing = (
   <Router>
-    <div>
+    <section style={{ height: '100%' }}>
       <Route path="/" component={SiderLayout} />
-    </div>
+      <Route exact path="/">
+        <Redirect to="/home" />
+    </Route>
+    </section>
   </Router>
 );
 
