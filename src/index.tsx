@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { Route, Redirect, HashRouter } from 'react-router-dom';
 import './style.less';
 import { SiderLayout } from './sider-layout';
 
 const routing = (
-  <Router>
+  <HashRouter>
     <section style={{ height: '100%' }}>
       <Route path="/" component={SiderLayout} />
       <Route exact path="/">
         <Redirect to="/home" />
     </Route>
     </section>
-  </Router>
+  </HashRouter>
 );
 
 ReactDOM.render(routing, document.getElementById('root'));
