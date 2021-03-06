@@ -64,6 +64,7 @@ export class SiderLayout extends React.Component<RouteComponentProps, any> {
                   onClick: this.toggle,
                 }
               )}
+              <span className="logo">My First React App</span>
             </Header>
             <Content
               className="site-layout-background"
