@@ -10,7 +10,7 @@ const routing = (
       <Route path="/" component={SiderLayout} />
       <Route exact path="/">
         <Redirect to="/home" />
-    </Route>
+      </Route>
     </section>
   </HashRouter>
 );
