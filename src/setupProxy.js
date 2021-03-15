@@ -11,6 +11,14 @@ module.exports = function(app) {
       pathRewrite: {
         '^/bing-api': '/',
       },
-    })
+    }),
+    createProxyMiddleware('/weather', {
+      target: 'https://tianqiapi.com',
+      secure: false,
+      changeOrigin: true,
+      pathRewrite: {
+        '^/weather': '/',
+      },
+    }),
   );
 };

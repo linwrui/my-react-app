@@ -3,9 +3,19 @@ import { Content, Footer } from 'antd/lib/layout/layout';
 import axios from 'axios';
 import React from 'react';
 import { Container } from '../../elements/container';
+import { WeatherWidget } from '../../widgets/weather-widget';
 import './style.less';
 
-export class Home extends React.Component<any, any> {
+interface StateType {
+  backgroundUrl: string;
+  todyBingImage: {
+    url?: string;
+    copyright?: string;
+    copyrightlink?: string;
+  };
+}
+
+export class Home extends React.Component<any, StateType> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -31,8 +41,11 @@ export class Home extends React.Component<any, any> {
     return (
       <Container xAttr="home">
         <Layout>
-          <Content>
-            <img alt="" src={backgroundUrl} />
+          <Content className="layout-content">
+            <div className="main-content">
+              <WeatherWidget/>
+              <img alt="" src={backgroundUrl} />
+            </div>
           </Content>
           <Footer>
             <div>{todyBingImage?.copyright}</div>
