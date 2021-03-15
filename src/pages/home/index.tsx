@@ -8,6 +8,7 @@ import './style.less';
 
 interface StateType {
   backgroundUrl: string;
+  imgLoaded: boolean;
   todyBingImage: {
     url?: string;
     copyright?: string;
@@ -20,6 +21,7 @@ export class Home extends React.Component<any, StateType> {
     super(props);
     this.state = {
       backgroundUrl: '',
+      imgLoaded: false,
       todyBingImage: {},
     };
   }
@@ -37,14 +39,14 @@ export class Home extends React.Component<any, StateType> {
   }
 
   render() {
-    const { backgroundUrl, todyBingImage } = this.state;
+    const { backgroundUrl, todyBingImage, imgLoaded } = this.state;
     return (
       <Container xAttr="home">
         <Layout>
           <Content className="layout-content">
             <div className="main-content">
-              <WeatherWidget/>
-              <img alt="" src={backgroundUrl} />
+              {imgLoaded ? <WeatherWidget/> : null}
+              <img onLoad={()=>this.setState({imgLoaded: true})} alt="" src={backgroundUrl} />
             </div>
           </Content>
           <Footer>

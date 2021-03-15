@@ -46,7 +46,7 @@ export class WeatherWidget extends React.Component<any, StateType> {
 
   render() {
     const { weatherData } = this.state;
-    return (
+    return weatherData?.wea_img == null ? null : (
       <div className="weather-widget">
         <div className="weather-icon">
           <WeatherIcon weaImag={weatherData.wea_img as string} />
