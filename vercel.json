@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/bing-api/:match*", "destination": "https://cn.bing.com/:match*" },
+      { "source": "/weather/:match*", "destination": "https://tianqiapi.com/:match*" }
+    ]
+  }
