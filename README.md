@@ -7,7 +7,7 @@
 * `axios`
 * `http-proxy-middleware`
 # Deploy With [Vercel](https://vercel.com/) 
-https://my-react-app-flax.vercel.app
+https://my-react-app-linwrui.vercel.app
 
 # Getting Started with Create React App
 
