@@ -1,13 +1,20 @@
 ## This rule redirects to an external API, signing requests with a secret
 [[redirects]]
-  from = "/bing-api"
-  to = "https://cn.bing.com"
+  from = "/bing-api/*"
+  to = "https://cn.bing.com/:splat"
   status = 200
   force = true # COMMENT: ensure that we always redirect
   headers = {X-From = "Netlify"}
 
 [[redirects]]
-  from = "/weather"
+  from = "/weather/*"
+  to = "https://tianqiapi.com/:splat"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {X-From = "Netlify"}
+
+[[redirects]]
+  from = "/--"
   to = "https://tianqiapi.com"
   status = 200
   force = true # COMMENT: ensure that we always redirect
