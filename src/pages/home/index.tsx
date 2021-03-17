@@ -3,6 +3,7 @@ import { Content, Footer } from 'antd/lib/layout/layout';
 import axios from 'axios';
 import React from 'react';
 import { Container } from '../../elements/container';
+import { TimeWidget } from '../../widgets/time-widget';
 import { WeatherWidget } from '../../widgets/weather-widget';
 import './style.less';
 
@@ -46,6 +47,7 @@ export class Home extends React.Component<any, StateType> {
           <Content className="layout-content">
             <div className="main-content">
               {imgLoaded ? <WeatherWidget/> : null}
+              {imgLoaded ? <TimeWidget/> : null}
               <img onLoad={()=>this.setState({imgLoaded: true})} alt="" src={backgroundUrl} />
             </div>
           </Content>
