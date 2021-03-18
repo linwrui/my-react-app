@@ -10,7 +10,7 @@ import { Game } from '../pages/borad-game';
 import './style.less';
 import { Home } from '../pages/home';
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 export class Navigation extends React.Component<RouteComponentProps, any> {
   constructor(props: RouteComponentProps) {
