@@ -1,9 +1,5 @@
 import { Layout, Menu } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined, AppstoreOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Link, Route, RouteComponentProps } from 'react-router-dom';
 import { Game } from '../pages/borad-game';
@@ -19,6 +15,7 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
     this.state = {
       collapsed: true,
       selectedKey: location.pathname === '/' ? '/home' : location.pathname,
+      breakpointLayout: 'none',
     };
   }
 
@@ -30,14 +27,16 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
   };
 
   render() {
-    const { collapsed, selectedKey } = this.state;
+    const { collapsed, selectedKey, breakpointLayout } = this.state;
     return (
       <Layout className="app-navigation">
         <Sider
-          breakpoint="lg"
+          width={breakpointLayout === 'response' ? '100%' : '200px'}
+          breakpoint="sm"
           collapsedWidth="0"
-          onCollapse={(coll) => {
-            this.setState({collapsed: coll});
+          onBreakpoint={breakpoint => this.setState({ breakpointLayout: breakpoint ? 'response' : 'none' })}
+          onCollapse={coll => {
+            this.setState({ collapsed: coll });
           }}
           trigger={null}
           collapsible
@@ -64,14 +63,11 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
             style={{
               padding: 24,
             }}>
-            {React.createElement(
-              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-              {
-                className: 'trigger',
-                onClick: this.toggle,
-                style: collapsed ? { top: 10, left: 10, color: '#D2D2D2' } : {}
-              }
-            )}
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+              className: 'trigger',
+              onClick: this.toggle,
+              style: collapsed ? { top: 10, left: 10, color: '#D2D2D2' } : {},
+            })}
             <Route exact path="/home" component={Home} />
             <Route exact path="/nav1" component={() => <h1>nav1</h1>} />
             <Route exact path="/nav2" component={() => <h1>nav2</h1>} />
