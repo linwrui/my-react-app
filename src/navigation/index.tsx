@@ -17,7 +17,7 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
     super(props);
     const { location } = props;
     this.state = {
-      collapsed: false,
+      collapsed: true,
       selectedKey: location.pathname === '/' ? '/home' : location.pathname,
     };
   }
