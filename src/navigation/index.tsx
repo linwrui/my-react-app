@@ -69,7 +69,7 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
               {
                 className: 'trigger',
                 onClick: this.toggle,
-                style: collapsed ? { top: 10, left: 10 } : {}
+                style: collapsed ? { top: 10, left: 10, color: '#D2D2D2' } : {}
               }
             )}
             <Route exact path="/home" component={Home} />
