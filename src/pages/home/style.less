@@ -1,9 +1,10 @@
-[x-component-attr=home] {
+.app-home {
     height: 100%;
     text-align: center;
 
     img {
-        height: 100%;
+        max-width: 100%;
+        min-height: 100%;
     }
     main.ant-layout-content.layout-content {
         display: flex;
@@ -12,14 +13,18 @@
             width: fit-content;
             position: relative;
             height: 100%;
+            align-items: center;
+            display: flex;
+            overflow: hidden;
             .weather-widget {
                 position: absolute;
-                margin: 30px 50px;
+                top: 25px;
+                left: 30px;
             }
             .time-widget {
                 position: absolute;
                 width: 100%;
-                margin-top: 50px;
+                top: 75px;
             }
         }
     }

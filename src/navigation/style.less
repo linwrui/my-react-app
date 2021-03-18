@@ -1,18 +1,20 @@
-[x-component-attr=sider-layout] {
+.app-navigation {
     height: 100%;
     section.ant-layout {
         height: 100%;
     }
-    .trigger {
+    span.trigger {
+        position: absolute;
+        left: 0;
+        top: 2px;
         padding: 0 24px;
         font-size: 18px;
         line-height: 64px;
         cursor: pointer;
         transition: color 0.3s;
-    }
-    
-    .trigger:hover {
-        color: #1890ff;
+        &:hover {
+            color: #1890ff;
+        }
     }
     
     .logo {

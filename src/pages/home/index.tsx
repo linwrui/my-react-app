@@ -3,7 +3,6 @@ import { Content, Footer } from 'antd/lib/layout/layout';
 import axios from 'axios';
 import { average } from 'color.js';
 import React from 'react';
-import { Container } from '../../elements/container';
 import { getReverseForegroundColor } from '../../utils/color-util';
 import { TimeWidget } from '../../widgets/time-widget';
 import { WeatherWidget } from '../../widgets/weather-widget';
@@ -48,7 +47,7 @@ export class Home extends React.Component<any, StateType> {
       const foreColor = getReverseForegroundColor(color);
       this.setState({
         foreColor,
-        imgLoaded: true
+        imgLoaded: true,
       });
     });
   }
@@ -56,34 +55,32 @@ export class Home extends React.Component<any, StateType> {
   render() {
     const { backgroundUrl, todyBingImage, imgLoaded, foreColor } = this.state;
     return (
-      <Container xAttr="home">
-        <Layout>
-          <Content className="layout-content">
-            <div className="main-content">
-              {imgLoaded ? <WeatherWidget color={foreColor}/> : null}
-              {imgLoaded ? <TimeWidget color={foreColor} /> : null}
-              <img
-                onLoad={e => this.handleImgLoaded(e)}
-                alt=""
-                src={backgroundUrl}
-              />
-            </div>
-          </Content>
-          <Footer>
-            <div>{todyBingImage?.copyright}</div>
-            <div>
-              <Tooltip placement="bottom" title="点击查看图片详细信息">
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={todyBingImage.copyrightlink}>
-                  图片来源：https://www.bing.com
-                </a>
-              </Tooltip>
-            </div>
-          </Footer>
-        </Layout>
-      </Container>
+      <Layout className="app-home">
+        <Content className="layout-content">
+          <div className="main-content">
+            {imgLoaded ? <WeatherWidget color={foreColor} /> : null}
+            {imgLoaded ? <TimeWidget color={foreColor} /> : null}
+            <img
+              onLoad={e => this.handleImgLoaded(e)}
+              alt=""
+              src={backgroundUrl}
+            />
+          </div>
+        </Content>
+        <Footer>
+          <div>{todyBingImage?.copyright}</div>
+          <div>
+            <Tooltip placement="bottom" title="点击查看图片详细信息">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={todyBingImage.copyrightlink}>
+                图片来源：https://www.bing.com
+              </a>
+            </Tooltip>
+          </div>
+        </Footer>
+      </Layout>
     );
   }
 }

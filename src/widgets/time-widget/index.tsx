@@ -16,6 +16,10 @@ export class TimeWidget extends React.Component<TimeWidgetPropType, TimeWidgetSt
   }
 
   componentDidMount() {
+    this.startTimeInterval();
+  }
+
+  private startTimeInterval() {
     setInterval(() => {
       this.setState({
         now: new Date(),
@@ -26,10 +30,9 @@ export class TimeWidget extends React.Component<TimeWidgetPropType, TimeWidgetSt
   render() {
     const { now } = this.state;
     const { color } = this.props;
-    const numberToString = (num: number) =>
-      num >= 10 ? num.toString() : `0${num}`;
+    const numberToString = (num: number) => (num >= 10 ? num.toString() : `0${num}`);
     return (
-      <div style={{color}} className="time-widget">
+      <div style={{ color }} className="time-widget">
         <div className="time">
           <span>
             {numberToString(now.getHours())}:{numberToString(now.getMinutes())}:{numberToString(now.getSeconds())}
