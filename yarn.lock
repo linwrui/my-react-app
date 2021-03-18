@@ -3518,6 +3518,11 @@ color-string@^1.5.4:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
 
+color.js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/color.js/download/color.js-1.2.0.tgz#18d9f55545111730d25ccf18ea8b6933c71440d7"
+  integrity sha1-GNn1VUURFzDSXM8Y6otpM8cUQNc=
+
 color@^3.0.0:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/color/-/color-3.1.3.tgz#ca67fb4e7b97d611dcde39eceed422067d91596e"

@@ -1,8 +1,10 @@
 import { Layout, Tooltip } from 'antd';
 import { Content, Footer } from 'antd/lib/layout/layout';
 import axios from 'axios';
+import { average } from 'color.js';
 import React from 'react';
 import { Container } from '../../elements/container';
+import { getReverseForegroundColor } from '../../utils/color-util';
 import { TimeWidget } from '../../widgets/time-widget';
 import { WeatherWidget } from '../../widgets/weather-widget';
 import './style.less';
@@ -10,6 +12,7 @@ import './style.less';
 interface StateType {
   backgroundUrl: string;
   imgLoaded: boolean;
+  foreColor: string;
   todyBingImage: {
     url?: string;
     copyright?: string;
@@ -23,6 +26,7 @@ export class Home extends React.Component<any, StateType> {
     this.state = {
       backgroundUrl: '',
       imgLoaded: false,
+      foreColor: '#D2D2D2',
       todyBingImage: {},
     };
   }
@@ -39,16 +43,30 @@ export class Home extends React.Component<any, StateType> {
       });
   }
 
+  private handleImgLoaded(event: React.SyntheticEvent<HTMLImageElement>) {
+    average(event.currentTarget).then((color: any) => {
+      const foreColor = getReverseForegroundColor(color);
+      this.setState({
+        foreColor,
+        imgLoaded: true
+      });
+    });
+  }
+
   render() {
-    const { backgroundUrl, todyBingImage, imgLoaded } = this.state;
+    const { backgroundUrl, todyBingImage, imgLoaded, foreColor } = this.state;
     return (
       <Container xAttr="home">
         <Layout>
           <Content className="layout-content">
             <div className="main-content">
-              {imgLoaded ? <WeatherWidget/> : null}
-              {imgLoaded ? <TimeWidget/> : null}
-              <img onLoad={()=>this.setState({imgLoaded: true})} alt="" src={backgroundUrl} />
+              {imgLoaded ? <WeatherWidget color={foreColor}/> : null}
+              {imgLoaded ? <TimeWidget color={foreColor} /> : null}
+              <img
+                onLoad={e => this.handleImgLoaded(e)}
+                alt=""
+                src={backgroundUrl}
+              />
             </div>
           </Content>
           <Footer>

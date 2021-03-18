@@ -1,11 +1,14 @@
 import React from 'react';
 import './style.less';
 
+interface TimeWidgetPropType {
+  color?: string;
+}
 interface TimeWidgetStateType {
   now: Date;
 }
-export class TimeWidget extends React.Component<any, TimeWidgetStateType> {
-  constructor(props: any) {
+export class TimeWidget extends React.Component<TimeWidgetPropType, TimeWidgetStateType> {
+  constructor(props: TimeWidgetPropType) {
     super(props);
     this.state = {
       now: new Date(),
@@ -22,10 +25,11 @@ export class TimeWidget extends React.Component<any, TimeWidgetStateType> {
 
   render() {
     const { now } = this.state;
+    const { color } = this.props;
     const numberToString = (num: number) =>
       num >= 10 ? num.toString() : `0${num}`;
     return (
-      <div className="time-widget">
+      <div style={{color}} className="time-widget">
         <div className="time">
           <span>
             {numberToString(now.getHours())}:{numberToString(now.getMinutes())}:{numberToString(now.getSeconds())}

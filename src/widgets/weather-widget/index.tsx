@@ -6,18 +6,26 @@ import './style.less';
 
 function WeatherIcon(props: { weaImag: string }) {
   // xue、lei、shachen、wu、bingbao、yun、yu、yin、qing
-  const weatherTypes: {[key: string]: string} = {
-    xue: "iconSnow",
-    lei: "iconThunder",
-    yun: "iconCloud",
-    yu: "iconRain",
-    yin: "iconCloudy2",
-    qing: "iconSun"
+  const weatherTypes: { [key: string]: string } = {
+    xue: 'iconSnow',
+    lei: 'iconThunder',
+    yun: 'iconCloud',
+    yu: 'iconRain',
+    yin: 'iconCloudy2',
+    qing: 'iconSun',
   };
-  const {weaImag} = props;
-  return <IconFont style={{ fontSize: '36px' }} type= {weatherTypes[weaImag] || "iconCloud"}/>;
+  const { weaImag } = props;
+  return (
+    <IconFont
+      style={{ fontSize: '36px' }}
+      type={weatherTypes[weaImag] || 'iconCloud'}
+    />
+  );
 }
-interface StateType {
+interface WeatherWidgetPropType {
+  color: string;
+}
+interface WeatherWidgetStateType {
   weatherData: {
     city?: string;
     wea?: string;
@@ -25,8 +33,11 @@ interface StateType {
     tem?: string;
   };
 }
-export class WeatherWidget extends React.Component<any, StateType> {
-  constructor(props: any) {
+export class WeatherWidget extends React.Component<
+  WeatherWidgetPropType,
+  WeatherWidgetStateType
+> {
+  constructor(props: WeatherWidgetPropType) {
     super(props);
     this.state = {
       weatherData: {},
@@ -46,8 +57,9 @@ export class WeatherWidget extends React.Component<any, StateType> {
 
   render() {
     const { weatherData } = this.state;
+    const { color } = this.props;
     return weatherData?.wea_img == null ? null : (
-      <div className="weather-widget">
+      <div style={{ color }} className="weather-widget">
         <div className="weather-icon">
           <WeatherIcon weaImag={weatherData.wea_img as string} />
         </div>
