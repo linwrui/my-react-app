@@ -19,6 +19,18 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
     };
   }
 
+  componentDidMount() {
+    const { history } = this.props;
+    history.listen(() => {
+      const { breakpointLayout } = this.state;
+      if (breakpointLayout === 'response') {
+        this.setState({
+          collapsed: true,
+        });
+      }
+    });
+  }
+
   toggle = () => {
     const { collapsed } = this.state;
     this.setState({
@@ -66,7 +78,7 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: this.toggle,
-              style: collapsed ? { top: 10, left: 10, color: '#D2D2D2' } : {},
+              style: collapsed ? { top: 30, left: 30, color: '#D2D2D2' } : { top: 22, left: 25 },
             })}
             <Route exact path="/home" component={Home} />
             <Route exact path="/nav1" component={() => <h1>nav1</h1>} />

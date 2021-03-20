@@ -8,6 +8,8 @@ interface TimeWidgetStateType {
   now: Date;
 }
 export class TimeWidget extends React.Component<TimeWidgetPropType, TimeWidgetStateType> {
+  private timeInterval: any;
+  
   constructor(props: TimeWidgetPropType) {
     super(props);
     this.state = {
@@ -19,8 +21,12 @@ export class TimeWidget extends React.Component<TimeWidgetPropType, TimeWidgetSt
     this.startTimeInterval();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timeInterval);
+  }
+
   private startTimeInterval() {
-    setInterval(() => {
+    this.timeInterval = setInterval(() => {
       this.setState({
         now: new Date(),
       });
