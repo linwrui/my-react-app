@@ -2,17 +2,40 @@ import { Layout, Menu } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined, AppstoreOutlined } from '@ant-design/icons';
 import React from 'react';
 import { Link, Route, RouteComponentProps } from 'react-router-dom';
-import { Game } from '../pages/borad-game';
+import { Game } from '../pages/game';
 import './style.less';
 import { Home } from '../pages/home';
 
 const { Sider, Content } = Layout;
+interface NavigationState {
+  navigationMenu: Array<{
+    linkTo: string;
+    title: string;
+    icon?: React.ReactNode;
+    component: React.ComponentType<any>;
+  }>;
+  collapsed: boolean;
+  selectedKey: string;
+  breakpointLayout: 'response' | 'none';
+}
 
-export class Navigation extends React.Component<RouteComponentProps, any> {
+export class Navigation extends React.Component<RouteComponentProps, NavigationState> {
   constructor(props: RouteComponentProps) {
     super(props);
     const { location } = props;
     this.state = {
+      navigationMenu: [
+        {
+          linkTo: '/home',
+          title: 'Home',
+          component: Home,
+        },
+        {
+          linkTo: '/game',
+          title: 'Game',
+          component: Game,
+        },
+      ],
       collapsed: true,
       selectedKey: location.pathname === '/' ? '/home' : location.pathname,
       breakpointLayout: 'none',
@@ -39,7 +62,7 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
   };
 
   render() {
-    const { collapsed, selectedKey, breakpointLayout } = this.state;
+    const { navigationMenu, collapsed, selectedKey, breakpointLayout } = this.state;
     return (
       <Layout className="app-navigation">
         <Sider
@@ -55,18 +78,11 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
           collapsed={collapsed}>
           <div className="logo">React App</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={[selectedKey]}>
-            <Menu.Item key="/home" icon={<AppstoreOutlined />}>
-              <Link to="/home">Home</Link>
-            </Menu.Item>
-            <Menu.Item key="/game" icon={<AppstoreOutlined />}>
-              <Link to="/game">Game</Link>
-            </Menu.Item>
-            <Menu.Item key="/nav1" icon={<AppstoreOutlined />}>
-              <Link to="/nav1">nav1</Link>
-            </Menu.Item>
-            <Menu.Item key="/nav2" icon={<AppstoreOutlined />}>
-              <Link to="/nav2">nav2</Link>
-            </Menu.Item>
+            {navigationMenu.map(x => (
+              <Menu.Item key={x.linkTo} icon={x.icon || <AppstoreOutlined />}>
+                <Link to={x.linkTo}>{x.title}</Link>
+              </Menu.Item>
+            ))}
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -80,10 +96,9 @@ export class Navigation extends React.Component<RouteComponentProps, any> {
               onClick: this.toggle,
               style: collapsed ? { top: 30, left: 30, color: '#D2D2D2' } : { top: 22, left: 25 },
             })}
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/nav1" component={() => <h1>nav1</h1>} />
-            <Route exact path="/nav2" component={() => <h1>nav2</h1>} />
-            <Route exact path="/game" component={Game} />
+            {navigationMenu.map(x => (
+              <Route key={x.linkTo} exact path={x.linkTo} component={x.component} />
+            ))}
           </Content>
         </Layout>
       </Layout>

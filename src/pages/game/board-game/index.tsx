@@ -60,7 +60,7 @@ class Board extends React.Component<any> {
   }
 }
 
-export class Game extends React.Component<any, any> {
+export class BoardGame extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -129,8 +129,8 @@ export class Game extends React.Component<any, any> {
     }
 
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className="board-game">
+        <div className="game-content">
           {winner ? <div className="winner">{`winner: ${winner}`}</div> : null}
           <Board
             squares={current.squares}
