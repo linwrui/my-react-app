@@ -22,10 +22,10 @@ function WeatherIcon(props: { weaImag: string }) {
     />
   );
 }
-interface WeatherWidgetPropType {
+interface WeatherWidgetProps {
   color: string;
 }
-interface WeatherWidgetStateType {
+interface WeatherWidgetState {
   weatherData: {
     city?: string;
     wea?: string;
@@ -34,10 +34,12 @@ interface WeatherWidgetStateType {
   };
 }
 export class WeatherWidget extends React.Component<
-  WeatherWidgetPropType,
-  WeatherWidgetStateType
+  WeatherWidgetProps,
+  WeatherWidgetState
 > {
-  constructor(props: WeatherWidgetPropType) {
+  private willUnmounted = false;
+
+  constructor(props: WeatherWidgetProps) {
     super(props);
     this.state = {
       weatherData: {},
@@ -48,11 +50,16 @@ export class WeatherWidget extends React.Component<
     axios
       .get('/weather/api?version=v6&appid=42734629&appsecret=MA2q7dbR')
       .then(weather => {
+        if (this.willUnmounted) return;
         console.log(weather.data);
         this.setState({
           weatherData: weather.data,
         });
       });
+  }
+
+  componentWillUnmount() {
+    this.willUnmounted = true;
   }
 
   render() {

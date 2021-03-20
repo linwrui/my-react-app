@@ -1,16 +1,16 @@
 import React from 'react';
 import './style.less';
 
-interface TimeWidgetPropType {
+interface TimeWidgetProps {
   color?: string;
 }
-interface TimeWidgetStateType {
+interface TimeWidgetState {
   now: Date;
 }
-export class TimeWidget extends React.Component<TimeWidgetPropType, TimeWidgetStateType> {
+export class TimeWidget extends React.Component<TimeWidgetProps, TimeWidgetState> {
   private timeInterval: any;
   
-  constructor(props: TimeWidgetPropType) {
+  constructor(props: TimeWidgetProps) {
     super(props);
     this.state = {
       now: new Date(),

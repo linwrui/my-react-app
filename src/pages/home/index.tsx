@@ -20,6 +20,8 @@ interface StateType {
 }
 
 export class Home extends React.Component<any, StateType> {
+  private willUnmounted = false;
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -34,12 +36,17 @@ export class Home extends React.Component<any, StateType> {
     axios
       .get('/bing-api/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
       .then(todyBing => {
+        if (this.willUnmounted) return;
         console.log(todyBing.data);
         this.setState({
           backgroundUrl: `/bing-api/${todyBing.data.images[0].url}`,
           todyBingImage: todyBing.data.images[0],
         });
       });
+  }
+    
+  componentWillUnmount() {
+    this.willUnmounted = true;
   }
 
   private handleImgLoaded(event: React.SyntheticEvent<HTMLImageElement>) {
