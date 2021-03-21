@@ -12,6 +12,7 @@ interface Poker24PointGameState {
     results: string[];
     message?: string;
   };
+  resultsCollaged: boolean;
 }
 export class Poker24PointGame extends React.Component<unknown, Poker24PointGameState> {
   private readonly availablePoints = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -24,6 +25,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
     this.state = {
       pokerCards: [],
       expectationCalculateResult: { results: [] },
+      resultsCollaged: true,
     };
   }
 
@@ -49,6 +51,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
     this.setState({
       pokerCards: cards.map(card => <PokerWidget key={card.key} point={card.point} pic={card.pic} />),
       expectationCalculateResult: { results: [] },
+      resultsCollaged: true
     });
   }
 
@@ -64,10 +67,11 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
   }
 
   render() {
-    const { pokerCards, expectationCalculateResult } = this.state;
+    const { pokerCards, expectationCalculateResult, resultsCollaged } = this.state;
     const submitCards = (values: any) => {
       this.randomCards([values.card1, values.card2, values.card3, values.card4]);
     };
+    const hasResult = expectationCalculateResult.results.length > 0 || expectationCalculateResult.message;
     const cardSelectorFormItem = (index: number) => {
       const itemName = `card${index}`;
       return (
@@ -110,12 +114,20 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
           title={
             <div className="calc-results-title">
               <Space size="large" align="start">
-                <Button type="primary" onClick={() => this.calcResult()} size="small">
-                  计算结果
-                </Button>
-                {expectationCalculateResult.results.length > 0 || expectationCalculateResult.message ? (
+                {hasResult ? (
+                  <Tooltip title="再次点击查看结果">
+                    <Button type="primary" onClick={() => this.setState({ resultsCollaged: false })} size="small">
+                      查看结果（共 {expectationCalculateResult.results.length} 个）
+                    </Button>
+                  </Tooltip>
+                ) : (
+                  <Button type="primary" onClick={() => this.calcResult()} size="small">
+                    计算结果
+                  </Button>
+                )}
+                {hasResult ? (
                   <Tooltip title="清除结果">
-                    <Button onClick={() => this.setState({ expectationCalculateResult: { results: [] } })} size="small">
+                    <Button onClick={() => this.setState({ expectationCalculateResult: { results: [] }, resultsCollaged: true })} size="small">
                       <CloseOutlined />
                     </Button>
                   </Tooltip>
@@ -125,11 +137,13 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
           }>
           <div className="calc-results">
             <span className="calc-message">{expectationCalculateResult.message}</span>
-            {expectationCalculateResult.results.map(result => (
-              <div key={result} className="calc-result">
-                {result}
-              </div>
-            ))}
+            {resultsCollaged
+              ? null
+              : expectationCalculateResult.results.map(result => (
+                  <div key={result} className="calc-result">
+                    {result}
+                  </div>
+                ))}
           </div>
         </Card>
       </div>
