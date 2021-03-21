@@ -1,16 +1,15 @@
 .poker24Point-game {
+    height: 100%;
     .poker-cards {
         display: flex;
         flex-wrap: wrap;
     }
 
     .calc-results {
-        display: flex;
-        flex-direction: column;
+        max-height: calc(100% - 68px);
         overflow: auto;
-        max-height: calc(100% - 22px);
 
-        span.calc-result {
+        .calc-result {
             padding: 5px;
         }
     }

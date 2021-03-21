@@ -22,13 +22,13 @@ export class Game extends React.Component<any, GameState> {
     super(props);
     const games = [
       {
-        game: 'BoardGame',
-        component: <BoardGame />,
-      },
-      {
         game: 'Poker24Point',
         component: <Poker24PointGame />,
         icon: <PokerIconFont type="icon-icon_poker"/>
+      },
+      {
+        game: 'BoardGame',
+        component: <BoardGame />,
       },
     ];
     this.state = {

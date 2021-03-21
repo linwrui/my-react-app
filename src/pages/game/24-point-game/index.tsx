@@ -1,4 +1,5 @@
-import { Button, Card, Divider, Form, FormInstance, Select, Space } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
+import { Button, Card, Divider, Form, FormInstance, Select, Space, Tooltip } from 'antd';
 import React from 'react';
 import { PokerWidget } from '../../../widgets/poker-widget';
 import { calcExpectationResult } from './calc-expectation-result';
@@ -55,7 +56,10 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
   private calcResult() {
     this.setState({
       expectationCalculateResult: calcExpectationResult(
-        this.currentCards.map(x => this.availablePoints.indexOf(x.point) + 1)
+        this.currentCards.map(x => {
+          const cardNum = this.availablePoints.indexOf(x.point) + 1;
+          return cardNum > 10 ? 10 : cardNum;
+        })
       ),
     });
   }
@@ -69,7 +73,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
       const itemName = `card${index}`;
       return (
         <Form.Item name={itemName}>
-          <Select allowClear placeholder="随机出牌">
+          <Select allowClear placeholder="随机">
             {this.availablePoints.map(x => (
               <Option key={x} value={x}>
                 {x}
@@ -85,7 +89,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
           className="post-cards"
           title={
             <div className="post-cards-title">
-              <Form layout="inline" ref={this.formRef} name="control-ref" onFinish={(v) => submitCards(v)}>
+              <Form size="small" layout="inline" ref={this.formRef} name="control-ref" onFinish={v => submitCards(v)}>
                 {cardSelectorFormItem(1)}
                 {cardSelectorFormItem(2)}
                 {cardSelectorFormItem(3)}
@@ -102,22 +106,32 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
         </Card>
         <Divider />
         <Card
-          className="post-cards"
+          style={{ height: 'calc(100% - 280px)', overflow: 'auto' }}
+          bodyStyle={{ height: 'calc(100% - 65px)', overflow: 'auto' }}
           title={
-            <div className="post-cards-title">
+            <div className="calc-results-title">
               <Space size="large" align="start">
                 <Button onClick={() => this.calcResult()} value="small">
                   计算结果
                 </Button>
+                {expectationCalculateResult.results.length > 0 || expectationCalculateResult.message ? (
+                  <Tooltip title="清除结果">
+                    <Button
+                      onClick={() => this.setState({ expectationCalculateResult: { results: [] } })}
+                      value="small">
+                      <CloseOutlined />
+                    </Button>
+                  </Tooltip>
+                ) : null}
               </Space>
             </div>
           }>
           <div className="calc-results">
             <span className="calc-message">{expectationCalculateResult.message}</span>
             {expectationCalculateResult.results.map(result => (
-              <span key={result} className="calc-result">
+              <div key={result} className="calc-result">
                 {result}
-              </span>
+              </div>
             ))}
           </div>
         </Card>
