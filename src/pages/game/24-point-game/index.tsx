@@ -106,7 +106,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
         </Card>
         <Divider />
         <Card
-          style={{ height: 'calc(100% - 280px)', overflow: 'auto' }}
+          style={{ height: 'calc(100% - 280px)', overflow: 'auto', minHeight: 200 }}
           bodyStyle={{ height: 'calc(100% - 65px)', overflow: 'auto' }}
           title={
             <div className="calc-results-title">
