@@ -9,6 +9,9 @@
 # Deploy With [Vercel](https://vercel.com/) 
 https://my-react-app-linwrui.vercel.app
 
+* [Home](https://my-react-app-linwrui.vercel.app/#/home) 
+* [Game](https://my-react-app-linwrui.vercel.app/#/game) 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
