@@ -32,23 +32,22 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
   }
 
   private randomCards(points: string[]) {
-    const availableColor = ['red', 'dark'];
     const availablePic = ['spades', 'clubs', 'diamonds', 'hearts'];
-    const cards = Object.assign([undefined, undefined, undefined, undefined], points).map(point => ({
-      point: point || (this.availablePoints[Math.floor(Math.random() * 13)] as any),
-      color: availableColor[Math.floor(Math.random() * 10) % 2] as any,
-      pic: availablePic[Math.floor(Math.random() * 10) % 4] as any,
-      key: '',
-    }));
-    cards.forEach((card, index) => {
-      const c = card;
-      c.key = `${card.point}-${card.color}-${card.pic}-${index}`;
-    });
+    const cards: any[] = [];
+    while (cards.length < 4) {
+      const card = {
+        point: points[cards.length] || (this.availablePoints[Math.floor(Math.random() * 13)] as any),
+        pic: availablePic[Math.floor(Math.random() * 10) % 4] as any,
+        key: '',
+      };
+      card.key = `${card.point}-${card.pic}`;
+      if (!cards.some(x => x.key === card.key)) {
+        cards.push(card);
+      }
+    }
     this.currentCards = cards;
     this.setState({
-      pokerCards: cards.map(card => (
-        <PokerWidget key={card.key} point={card.point} color={card.color} pic={card.pic} />
-      )),
+      pokerCards: cards.map(card => <PokerWidget key={card.key} point={card.point} pic={card.pic} />),
       expectationCalculateResult: { results: [] },
     });
   }
@@ -72,7 +71,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
     const cardSelectorFormItem = (index: number) => {
       const itemName = `card${index}`;
       return (
-        <Form.Item style={{marginRight: 5}} name={itemName}>
+        <Form.Item style={{ marginRight: 5 }} name={itemName}>
           <Select allowClear placeholder="-">
             {this.availablePoints.map(x => (
               <Option key={x} value={x}>
@@ -116,9 +115,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
                 </Button>
                 {expectationCalculateResult.results.length > 0 || expectationCalculateResult.message ? (
                   <Tooltip title="清除结果">
-                    <Button
-                      onClick={() => this.setState({ expectationCalculateResult: { results: [] } })}
-                      size="small">
+                    <Button onClick={() => this.setState({ expectationCalculateResult: { results: [] } })} size="small">
                       <CloseOutlined />
                     </Button>
                   </Tooltip>

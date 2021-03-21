@@ -4,21 +4,22 @@ import './style.less';
 
 interface PokerWidgetProps {
   point: 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
-  color: 'red' | 'dark';
   pic: 'spades' | 'clubs' | 'diamonds' | 'hearts';
 }
 export function PokerWidget(props: PokerWidgetProps) {
-  const { point, color, pic } = props;
+  const { point, pic } = props;
   let cardColor;
   switch (pic) {
+    case 'clubs':
     case 'spades':
       cardColor = 'dark';
       break;
+    case 'diamonds':
     case 'hearts':
       cardColor = 'red';
       break;
     default:
-      cardColor = color;
+      cardColor = 'red';
       break;
   }
   const pokerIconType = `icon-poker-${pic}`;
