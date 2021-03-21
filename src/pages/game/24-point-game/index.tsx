@@ -138,7 +138,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
           <div className="calc-results">
             <span className="calc-message">{expectationCalculateResult.message}</span>
             {resultsCollaged
-              ? null
+              ? <div>{hasResult ? '请点击 查看结果 按钮展开计算结果' : '请点击 计算结果 开始运算'}</div>
               : expectationCalculateResult.results.map(result => (
                   <div key={result} className="calc-result">
                     {result}
