@@ -89,7 +89,7 @@ export class Navigation extends React.Component<RouteComponentProps, NavigationS
           <Content
             className="site-layout-background"
             style={{
-              margin: 24,
+              margin: 20,
             }}>
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',

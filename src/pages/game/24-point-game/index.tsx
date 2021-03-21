@@ -72,8 +72,8 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
     const cardSelectorFormItem = (index: number) => {
       const itemName = `card${index}`;
       return (
-        <Form.Item name={itemName}>
-          <Select allowClear placeholder="随机">
+        <Form.Item style={{marginRight: 5}} name={itemName}>
+          <Select allowClear placeholder="-">
             {this.availablePoints.map(x => (
               <Option key={x} value={x}>
                 {x}
@@ -95,7 +95,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
                 {cardSelectorFormItem(3)}
                 {cardSelectorFormItem(4)}
                 <Form.Item>
-                  <Button value="small" htmlType="submit">
+                  <Button type="primary" value="small" htmlType="submit">
                     出牌
                   </Button>
                 </Form.Item>
@@ -106,19 +106,19 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
         </Card>
         <Divider />
         <Card
-          style={{ height: 'calc(100% - 280px)', overflow: 'auto', minHeight: 200 }}
+          style={{ height: 'calc(100% - 280px)', overflow: 'auto', minHeight: 280 }}
           bodyStyle={{ height: 'calc(100% - 65px)', overflow: 'auto' }}
           title={
             <div className="calc-results-title">
               <Space size="large" align="start">
-                <Button onClick={() => this.calcResult()} value="small">
+                <Button type="primary" onClick={() => this.calcResult()} size="small">
                   计算结果
                 </Button>
                 {expectationCalculateResult.results.length > 0 || expectationCalculateResult.message ? (
                   <Tooltip title="清除结果">
                     <Button
                       onClick={() => this.setState({ expectationCalculateResult: { results: [] } })}
-                      value="small">
+                      size="small">
                       <CloseOutlined />
                     </Button>
                   </Tooltip>
