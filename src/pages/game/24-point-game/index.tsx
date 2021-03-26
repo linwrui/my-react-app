@@ -1,5 +1,5 @@
 import { CloseOutlined } from '@ant-design/icons';
-import { Button, Card, Divider, Dropdown, Row, Select, Space, Tooltip } from 'antd';
+import { Button, Card, Divider, Dropdown, Select, Space, Tooltip } from 'antd';
 import React from 'react';
 import { PokerWidget } from '../../../widgets/poker-widget';
 import { calcExpectationResult } from './calc-expectation-result';
@@ -107,6 +107,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
             <div className="post-cards-title">
               <Dropdown.Button
                 type="primary"
+                size="small"
                 htmlType="submit"
                 trigger={['click']}
                 onClick={() => submitCards(specifiedCards)}
