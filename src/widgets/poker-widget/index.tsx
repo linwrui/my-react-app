@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokerIconFont } from '../../elements/iconfont';
+import { PokerIconFont } from '../../components/iconfont';
 import './style.less';
 
 interface PokerWidgetProps {

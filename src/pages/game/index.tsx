@@ -2,7 +2,7 @@ import { RocketOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import React from 'react';
-import { PokerIconFont } from '../../elements/iconfont';
+import { PokerIconFont } from '../../components/iconfont';
 import { Poker24PointGame } from './24-point-game';
 import { BoardGame } from './board-game';
 import './style.less';

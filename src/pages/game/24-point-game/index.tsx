@@ -1,5 +1,5 @@
 import { CloseOutlined } from '@ant-design/icons';
-import { Button, Card, Divider, Form, FormInstance, Select, Space, Tooltip } from 'antd';
+import { Button, Card, Divider, Dropdown, Row, Select, Space, Tooltip } from 'antd';
 import React from 'react';
 import { PokerWidget } from '../../../widgets/poker-widget';
 import { calcExpectationResult } from './calc-expectation-result';
@@ -8,6 +8,7 @@ import './style.less';
 const { Option } = Select;
 interface Poker24PointGameState {
   pokerCards: React.ReactNodeArray;
+  specifiedCards: string[];
   expectationCalculateResult: {
     results: string[];
     message?: string;
@@ -18,12 +19,12 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
   private readonly availablePoints = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
   private currentCards: Array<{ point: string; [key: string]: string }> = [];
-  private readonly formRef = React.createRef<FormInstance>();
 
   constructor(props: unknown) {
     super(props);
     this.state = {
       pokerCards: [],
+      specifiedCards: [],
       expectationCalculateResult: { results: [] },
       resultsCollaged: true,
     };
@@ -51,7 +52,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
     this.setState({
       pokerCards: cards.map(card => <PokerWidget key={card.key} point={card.point} pic={card.pic} />),
       expectationCalculateResult: { results: [] },
-      resultsCollaged: true
+      resultsCollaged: true,
     });
   }
 
@@ -67,42 +68,51 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
   }
 
   render() {
-    const { pokerCards, expectationCalculateResult, resultsCollaged } = this.state;
+    const { pokerCards, expectationCalculateResult, resultsCollaged, specifiedCards } = this.state;
     const submitCards = (values: any) => {
-      this.randomCards([values.card1, values.card2, values.card3, values.card4]);
+      this.randomCards(values);
     };
     const hasResult = expectationCalculateResult.results.length > 0 || expectationCalculateResult.message;
     const cardSelectorFormItem = (index: number) => {
-      const itemName = `card${index}`;
       return (
-        <Form.Item style={{ marginRight: 5 }} name={itemName}>
-          <Select allowClear placeholder="-">
-            {this.availablePoints.map(x => (
-              <Option key={x} value={x}>
-                {x}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
+        <Select
+          allowClear
+          placeholder="随机出牌"
+          style={{width: 100}}
+          onClick={e => e.stopPropagation()}
+          onChange={v => {
+            specifiedCards[index] = v?.toString();
+          }}>
+          {this.availablePoints.map(x => (
+            <Option key={x} value={x}>
+              {x}
+            </Option>
+          ))}
+        </Select>
       );
     };
+    const cardSelectors = (
+      <Space direction="vertical">
+        {cardSelectorFormItem(0)}
+        {cardSelectorFormItem(1)}
+        {cardSelectorFormItem(2)}
+        {cardSelectorFormItem(3)}
+      </Space>
+    );
     return (
       <div className="poker24Point-game">
         <Card
           className="post-cards"
           title={
             <div className="post-cards-title">
-              <Form size="small" layout="inline" ref={this.formRef} name="control-ref" onFinish={v => submitCards(v)}>
-                {cardSelectorFormItem(1)}
-                {cardSelectorFormItem(2)}
-                {cardSelectorFormItem(3)}
-                {cardSelectorFormItem(4)}
-                <Form.Item>
-                  <Button type="primary" value="small" htmlType="submit">
-                    出牌
-                  </Button>
-                </Form.Item>
-              </Form>
+              <Dropdown.Button
+                type="primary"
+                htmlType="submit"
+                trigger={['click']}
+                onClick={() => submitCards(specifiedCards)}
+                overlay={<div style={{backgroundColor: "#f2f2f2", padding: 5}}>{cardSelectors}</div>}>
+                出牌
+              </Dropdown.Button>
             </div>
           }>
           <div className="poker-cards">{pokerCards.map(card => card)}</div>
@@ -127,7 +137,11 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
                 )}
                 {hasResult ? (
                   <Tooltip title="清除结果">
-                    <Button onClick={() => this.setState({ expectationCalculateResult: { results: [] }, resultsCollaged: true })} size="small">
+                    <Button
+                      onClick={() =>
+                        this.setState({ expectationCalculateResult: { results: [] }, resultsCollaged: true })
+                      }
+                      size="small">
                       <CloseOutlined />
                     </Button>
                   </Tooltip>
@@ -137,13 +151,15 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
           }>
           <div className="calc-results">
             <span className="calc-message">{expectationCalculateResult.message}</span>
-            {resultsCollaged
-              ? <div>{hasResult ? '请点击 查看结果 按钮展开计算结果' : '请点击 计算结果 开始运算'}</div>
-              : expectationCalculateResult.results.map(result => (
-                  <div key={result} className="calc-result">
-                    {result}
-                  </div>
-                ))}
+            {resultsCollaged ? (
+              <div>{hasResult ? '请点击 查看结果 按钮展开计算结果' : '请点击 计算结果 开始运算'}</div>
+            ) : (
+              expectationCalculateResult.results.map(result => (
+                <div key={result} className="calc-result">
+                  {result}
+                </div>
+              ))
+            )}
           </div>
         </Card>
       </div>

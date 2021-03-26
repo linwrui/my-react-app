@@ -2,7 +2,7 @@ import { EnvironmentOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import axios from 'axios';
 import React from 'react';
-import { WeatherIconFont } from '../../elements/iconfont';
+import { WeatherIconFont } from '../../components/iconfont';
 import './style.less';
 
 function WeatherIcon(props: { wea: string; weaImag: string }) {
