@@ -5,6 +5,7 @@ import { Link, Route, RouteComponentProps } from 'react-router-dom';
 import { Game } from '../pages/game';
 import './style.less';
 import { Home } from '../pages/home';
+import { ColorGradient } from '../pages/color-gradient';
 
 const { Sider, Content } = Layout;
 interface NavigationState {
@@ -34,6 +35,11 @@ export class Navigation extends React.Component<RouteComponentProps, NavigationS
           linkTo: '/game',
           title: 'Game',
           component: Game,
+        },
+        {
+          linkTo: '/color-gradient',
+          title: 'ColorGradient',
+          component: ColorGradient,
         },
       ],
       collapsed: true,
