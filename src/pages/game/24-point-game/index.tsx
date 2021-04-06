@@ -75,24 +75,28 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
     const hasResult = expectationCalculateResult.results.length > 0 || expectationCalculateResult.message;
     const cardSelectorFormItem = (index: number) => {
       return (
-        <Select
-          allowClear
-          placeholder="随机出牌"
-          style={{width: 100}}
-          onClick={e => e.stopPropagation()}
-          onChange={v => {
-            specifiedCards[index] = v?.toString();
-          }}>
-          {this.availablePoints.map(x => (
-            <Option key={x} value={x}>
-              {x}
-            </Option>
-          ))}
-        </Select>
+        <div>
+          <span style={{paddingRight: 10}}>Card{index + 1}</span>
+          <Select
+            allowClear
+            placeholder="随机出牌"
+            style={{ width: 100 }}
+            onClick={e => e.stopPropagation()}
+            onChange={v => {
+              specifiedCards[index] = v?.toString();
+            }}>
+            {this.availablePoints.map(x => (
+              <Option key={x} value={x}>
+                {x}
+              </Option>
+            ))}
+          </Select>
+        </div>
       );
     };
     const cardSelectors = (
       <Space direction="vertical">
+        <span>请选择指定卡牌点数</span>
         {cardSelectorFormItem(0)}
         {cardSelectorFormItem(1)}
         {cardSelectorFormItem(2)}
@@ -107,11 +111,21 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
             <div className="post-cards-title">
               <Dropdown.Button
                 type="primary"
-                size="small"
                 htmlType="submit"
+                placement="bottomCenter"
                 trigger={['click']}
                 onClick={() => submitCards(specifiedCards)}
-                overlay={<div style={{backgroundColor: "#f2f2f2", padding: 5}}>{cardSelectors}</div>}>
+                overlay={
+                  <div
+                    style={{
+                      backgroundColor: '#fff',
+                      border: '1px solid #d7d7d7',
+                      boxShadow: '10px 10px 10px #d2d2d2',
+                      padding: 10,
+                    }}>
+                    {cardSelectors}
+                  </div>
+                }>
                 出牌
               </Dropdown.Button>
             </div>
@@ -124,15 +138,15 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
           bodyStyle={{ height: 'calc(100% - 65px)', overflow: 'auto' }}
           title={
             <div className="calc-results-title">
-              <Space size="large" align="start">
+              <Space size="small" align="start">
                 {hasResult ? (
                   <Tooltip title="再次点击查看结果">
-                    <Button type="primary" onClick={() => this.setState({ resultsCollaged: false })} size="small">
+                    <Button type="primary" onClick={() => this.setState({ resultsCollaged: false })}>
                       查看结果（共 {expectationCalculateResult.results.length} 个）
                     </Button>
                   </Tooltip>
                 ) : (
-                  <Button type="primary" onClick={() => this.calcResult()} size="small">
+                  <Button type="primary" onClick={() => this.calcResult()}>
                     计算结果
                   </Button>
                 )}
@@ -141,8 +155,7 @@ export class Poker24PointGame extends React.Component<unknown, Poker24PointGameS
                     <Button
                       onClick={() =>
                         this.setState({ expectationCalculateResult: { results: [] }, resultsCollaged: true })
-                      }
-                      size="small">
+                      }>
                       <CloseOutlined />
                     </Button>
                   </Tooltip>
