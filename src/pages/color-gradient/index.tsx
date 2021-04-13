@@ -10,6 +10,7 @@ interface ColorGradientState {
   backgroundblur: number;
   borderColor: string;
   borderWidth: number;
+  borderRadius: number;
   transformParams: GradientTransformParams;
 }
 
@@ -21,11 +22,12 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
       borderColor: 'rgba(0, 210, 255, 1)',
       backgroundblur: 3,
       borderWidth: 2,
+      borderRadius: 4,
       transformParams: Object.assign(defaultTransformParams, {}),
     };
   }
   render() {
-    const { backgroundColor, transformParams, backgroundblur, borderColor, borderWidth } = this.state;
+    const { backgroundColor, transformParams, backgroundblur, borderColor, borderWidth, borderRadius } = this.state;
     const backgroundRgb = rgb(backgroundColor);
     const borderRgb = rgb(borderColor);
     return (
@@ -39,17 +41,15 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
                 onChange={c => this.setState({ backgroundColor: `rgba(${c.r}, ${c.g}, ${c.b}, ${c.a || 0.01})` })}
               />
               <Form style={{ padding: 10 }} layout="inline">
-                <Form.Item name="angle" label="angle">
+                <Form.Item initialValue={transformParams.angle} name="angle" label="angle">
                   <InputNumber
-                    defaultValue={transformParams.angle}
                     min={-180}
                     max={180}
                     onChange={e => this.setState({ transformParams: Object.assign(transformParams, { angle: e }) })}
                   />
                 </Form.Item>
-                <Form.Item name="blur" label="blur">
+                <Form.Item initialValue={backgroundblur} name="blur" label="blur">
                   <InputNumber
-                    defaultValue={backgroundblur}
                     min={1}
                     onChange={e => this.setState({ backgroundblur: e as number })}
                   />
@@ -63,11 +63,16 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
                 onChange={c => this.setState({ borderColor: `rgba(${c.r}, ${c.g}, ${c.b}, ${c.a || 0.01})` })}
               />
               <Form style={{ padding: 10 }} layout="inline">
-                <Form.Item name="borderWidth" label="borderWidth">
+                <Form.Item initialValue={borderWidth} name="borderWidth" label="borderWidth">
                   <InputNumber
-                    defaultValue={borderWidth}
                     min={1}
                     onChange={e => this.setState({ borderWidth: e as number })}
+                  />
+                </Form.Item>
+                <Form.Item initialValue={borderRadius} name="borderRadius" label="borderRadius">
+                  <InputNumber
+                    min={1}
+                    onChange={e => this.setState({ borderRadius: e as number })}
                   />
                 </Form.Item>
               </Form>
@@ -83,7 +88,8 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
               backdropFilter: `blur(${backgroundblur}px)`,
               borderWidth,
               borderStyle: `solid`,
-              borderRadius: 4,
+              borderRadius,
+              clipPath: `inset(0 round ${borderRadius}px)`,
               borderImage: `${colorToLinearGradient(borderColor, {
                 ...transformParams,
                 colorStops: [
