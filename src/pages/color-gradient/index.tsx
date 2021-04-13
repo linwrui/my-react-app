@@ -17,8 +17,8 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
   constructor(props: unknown) {
     super(props);
     this.state = {
-      backgroundColor: 'rgba(255, 0, 0, 1)',
-      borderColor: '#2B56AB',
+      backgroundColor: '#2B56AB',
+      borderColor: 'rgba(0, 210, 255, 1)',
       backgroundblur: 3,
       borderWidth: 2,
       transformParams: Object.assign(defaultTransformParams, {}),
@@ -66,7 +66,6 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
             </div>
           </div>
         </div>
-        <Divider />
         <div className="gradient-preview">
           <div style={{ padding: 10 }}>
             gradient preview: <br /> <span>{colorToLinearGradient(borderColor, transformParams)}</span>
