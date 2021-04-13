@@ -7,6 +7,7 @@ export interface GradientTransformParams {
     h?: number | string;
     s?: number | string;
     l?: number | string;
+    position?: string;
     opacity?: number | string;
   }>;
 }
@@ -42,7 +43,7 @@ export function colorToLinearGradient(basicColor: string, transformParams?: Grad
           transform(color.opacity, x.opacity)
         )
       )
-      .map(x => x.toString());
+      .map((x, index) => `${x} ${transformParams.colorStops?.[index].position || ""}`);
     if (colorStops == null) {
       const red = color.rgb().r;
       const green = color.rgb().g;

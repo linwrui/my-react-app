@@ -43,14 +43,8 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
                   onChange={e => this.setState({ transformParams: Object.assign(transformParams, { angle: e }) })}
                 />
               </Form.Item>
-              <Form.Item
-                name="blur"
-                label="blur">
-                <InputNumber
-                  defaultValue={blur}
-                  min={1}
-                  onChange={e => this.setState({ blur: e as number })}
-                />
+              <Form.Item name="blur" label="blur">
+                <InputNumber defaultValue={blur} min={1} onChange={e => this.setState({ blur: e as number })} />
               </Form.Item>
             </Form>
           </div>
@@ -58,14 +52,26 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
         <Divider />
         <div className="gradient-preview">
           <div style={{ padding: 10 }}>
-            gradient preview: <br/> <span>{colorToLinearGradient(color, transformParams)}</span>
+            gradient preview: <br /> <span>{colorToLinearGradient(color, transformParams)}</span>
           </div>
           <div
             style={{
               backdropFilter: `blur(${blur}px)`,
+              border: '2px solid',
+              borderImage: `${colorToLinearGradient('#2B56AB', {
+                ...transformParams,
+                colorStops: [
+                  { opacity: 0.1 },
+                  { opacity: 0.6 },
+                  { opacity: 0.2 },
+                  { opacity: 0.2 },
+                  { opacity: 0.6 },
+                  { opacity: 0.1 },
+                ],
+              })} 10`,
               background: colorToLinearGradient(color, {
                 ...transformParams,
-                colorStops: [{ opacity: 0.4 }, { opacity: 0.2 }, { opacity: 0.1 }],
+                colorStops: [{ opacity: 0.4 }, { opacity: 0.2, position: '25%' }, { opacity: 0.1 }],
               }),
             }}
             className="gradient-grid"
