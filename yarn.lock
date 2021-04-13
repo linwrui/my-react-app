@@ -1736,6 +1736,11 @@
   resolved "https://registry.npm.taobao.org/@types/color-rgba/download/@types/color-rgba-2.1.0.tgz#0182795370deae5c2c62f71ea6e91c6bab87394d"
   integrity sha1-AYJ5U3DerlwsYvcepukca6uHOU0=
 
+"@types/d3-color@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/@types/d3-color/download/@types/d3-color-2.0.1.tgz#570ea7f8b853461301804efa52bd790a640a26db"
+  integrity sha1-Vw6n+LhTRhMBgE76Ur15CmQKJts=
+
 "@types/eslint@^7.2.6":
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.6.tgz#5e9aff555a975596c03a98b59ecd103decc70c3c"
@@ -4107,6 +4112,11 @@ cyclist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
+
+d3-color@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/d3-color/download/d3-color-2.0.0.tgz#8d625cab42ed9b8f601a1760a389f7ea9189d62e"
+  integrity sha1-jWJcq0Ltm49gGhdgo4n36pGJ1i4=
 
 d@1, d@^1.0.1:
   version "1.0.1"
