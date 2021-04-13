@@ -1,4 +1,4 @@
-import { Divider, Form, InputNumber } from 'antd';
+import { Form, InputNumber } from 'antd';
 import { rgb } from 'd3-color';
 import React from 'react';
 import { RgbaColorPicker } from 'react-colorful';
@@ -17,7 +17,7 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
   constructor(props: unknown) {
     super(props);
     this.state = {
-      backgroundColor: '#2B56AB',
+      backgroundColor: 'rgba(45, 85, 170, 1)',
       borderColor: 'rgba(0, 210, 255, 1)',
       backgroundblur: 3,
       borderWidth: 2,
@@ -36,7 +36,7 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
               background: <span>{backgroundColor}</span>
               <RgbaColorPicker
                 color={{ r: backgroundRgb.r, g: backgroundRgb.g, b: backgroundRgb.b, a: backgroundRgb.opacity }}
-                onChange={c => this.setState({ backgroundColor: `rgba(${c.r}, ${c.g}, ${c.b}, ${c.a})` })}
+                onChange={c => this.setState({ backgroundColor: `rgba(${c.r}, ${c.g}, ${c.b}, ${c.a || 0.01})` })}
               />
               <Form style={{ padding: 10 }} layout="inline">
                 <Form.Item name="angle" label="angle">
@@ -48,7 +48,11 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
                   />
                 </Form.Item>
                 <Form.Item name="blur" label="blur">
-                  <InputNumber defaultValue={backgroundblur} min={1} onChange={e => this.setState({ backgroundblur: e as number })} />
+                  <InputNumber
+                    defaultValue={backgroundblur}
+                    min={1}
+                    onChange={e => this.setState({ backgroundblur: e as number })}
+                  />
                 </Form.Item>
               </Form>
             </div>
@@ -56,11 +60,15 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
               border: <span>{borderColor}</span>
               <RgbaColorPicker
                 color={{ r: borderRgb.r, g: borderRgb.g, b: borderRgb.b, a: borderRgb.opacity }}
-                onChange={c => this.setState({ borderColor: `rgba(${c.r}, ${c.g}, ${c.b}, ${c.a})` })}
+                onChange={c => this.setState({ borderColor: `rgba(${c.r}, ${c.g}, ${c.b}, ${c.a || 0.01})` })}
               />
               <Form style={{ padding: 10 }} layout="inline">
                 <Form.Item name="borderWidth" label="borderWidth">
-                  <InputNumber defaultValue={borderWidth} min={1} onChange={e => this.setState({ borderWidth: e as number })} />
+                  <InputNumber
+                    defaultValue={borderWidth}
+                    min={1}
+                    onChange={e => this.setState({ borderWidth: e as number })}
+                  />
                 </Form.Item>
               </Form>
             </div>
@@ -85,11 +93,15 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
                   { opacity: 0.2 },
                   { opacity: 0.6 },
                   { opacity: 0.1 },
-                ],
+                ].map(x => ({ opacity: Number((x.opacity * borderRgb.opacity).toFixed(2)) })),
               })} 10`,
               background: colorToLinearGradient(backgroundColor, {
                 ...transformParams,
-                colorStops: [{ opacity: 0.4 }, { opacity: 0.2, position: '25%' }, { opacity: 0.1 }],
+                colorStops: [
+                  { opacity: Number((0.4 * backgroundRgb.opacity).toFixed(2)) },
+                  { opacity: Number((0.2 * backgroundRgb.opacity).toFixed(2)), position: '25%' },
+                  { opacity: Number((0.1 * backgroundRgb.opacity).toFixed(2)) },
+                ],
               }),
             }}
             className="gradient-grid"
