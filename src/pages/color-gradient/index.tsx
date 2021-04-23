@@ -2,8 +2,13 @@ import { Form, InputNumber } from 'antd';
 import { rgb } from 'd3-color';
 import React from 'react';
 import { RgbaColorPicker } from 'react-colorful';
-import { colorToLinearGradient, defaultTransformParams, GradientTransformParams } from './color-to-gradient';
+import { colorToLinearGradient, LinearGradientConvertOptions } from "color-gradient-converter/dist";
 import './style.less';
+
+export const defaultTransformParams: LinearGradientConvertOptions = {
+  angle: 135,
+  colorStopTransformTargets: []
+};
 
 interface ColorGradientState {
   backgroundColor: string;
@@ -11,7 +16,7 @@ interface ColorGradientState {
   borderColor: string;
   borderWidth: number;
   borderRadius: number;
-  transformParams: GradientTransformParams;
+  transformParams: LinearGradientConvertOptions;
 }
 
 export class ColorGradient extends React.Component<unknown, ColorGradientState> {
@@ -80,9 +85,6 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
           </div>
         </div>
         <div className="gradient-preview">
-          <div style={{ padding: 10 }}>
-            gradient preview: <br /> <span>{colorToLinearGradient(borderColor, transformParams)}</span>
-          </div>
           <div
             style={{
               backdropFilter: `blur(${backgroundblur}px)`,
@@ -92,7 +94,7 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
               clipPath: `inset(0 round ${borderRadius}px)`,
               borderImage: `${colorToLinearGradient(borderColor, {
                 ...transformParams,
-                colorStops: [
+                colorStopTransformTargets: [
                   { opacity: 0.1 },
                   { opacity: 0.6 },
                   { opacity: 0.2 },
@@ -103,9 +105,9 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
               })} 10`,
               background: colorToLinearGradient(backgroundColor, {
                 ...transformParams,
-                colorStops: [
+                colorStopTransformTargets: [
                   { opacity: Number((0.4 * backgroundRgb.opacity).toFixed(2)) },
-                  { opacity: Number((0.2 * backgroundRgb.opacity).toFixed(2)), position: '25%' },
+                  { opacity: Number((0.2 * backgroundRgb.opacity).toFixed(2)), markPercent: '25%' },
                   { opacity: Number((0.1 * backgroundRgb.opacity).toFixed(2)) },
                 ],
               }),
