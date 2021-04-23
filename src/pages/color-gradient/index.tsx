@@ -2,7 +2,7 @@ import { Form, InputNumber } from 'antd';
 import { rgb } from 'd3-color';
 import React from 'react';
 import { RgbaColorPicker } from 'react-colorful';
-import { colorToLinearGradient, LinearGradientConvertOptions } from "color-gradient-converter/dist";
+import { colorToLinearGradient, LinearGradientConvertOptions } from "color-gradient-converter";
 import './style.less';
 
 export const defaultTransformParams: LinearGradientConvertOptions = {
