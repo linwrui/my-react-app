@@ -35,6 +35,25 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
     const { backgroundColor, transformParams, backgroundblur, borderColor, borderWidth, borderRadius } = this.state;
     const backgroundRgb = rgb(backgroundColor);
     const borderRgb = rgb(borderColor);
+    const borderGradient = `${colorToLinearGradient(borderColor, {
+      ...transformParams,
+      colorStopTransformTargets: [
+        { opacity: 0.1 },
+        { opacity: 0.6 },
+        { opacity: 0.2 },
+        { opacity: 0.2 },
+        { opacity: 0.6 },
+        { opacity: 0.1 },
+      ].map(x => ({ opacity: Number((x.opacity * borderRgb.opacity).toFixed(2)) })),
+    })} 10`;
+    const backgroundGradient = colorToLinearGradient(backgroundColor, {
+      ...transformParams,
+      colorStopTransformTargets: [
+        { opacity: Number((0.4 * backgroundRgb.opacity).toFixed(2)) },
+        { opacity: Number((0.2 * backgroundRgb.opacity).toFixed(2)), markPercent: '25%' },
+        { opacity: Number((0.1 * backgroundRgb.opacity).toFixed(2)) },
+      ],
+    });
     return (
       <div style={{ padding: 10 }} className="color-gradient">
         <div className="basic-color">
@@ -92,25 +111,8 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
               borderStyle: `solid`,
               borderRadius,
               clipPath: `inset(0 round ${borderRadius}px)`,
-              borderImage: `${colorToLinearGradient(borderColor, {
-                ...transformParams,
-                colorStopTransformTargets: [
-                  { opacity: 0.1 },
-                  { opacity: 0.6 },
-                  { opacity: 0.2 },
-                  { opacity: 0.2 },
-                  { opacity: 0.6 },
-                  { opacity: 0.1 },
-                ].map(x => ({ opacity: Number((x.opacity * borderRgb.opacity).toFixed(2)) })),
-              })} 10`,
-              background: colorToLinearGradient(backgroundColor, {
-                ...transformParams,
-                colorStopTransformTargets: [
-                  { opacity: Number((0.4 * backgroundRgb.opacity).toFixed(2)) },
-                  { opacity: Number((0.2 * backgroundRgb.opacity).toFixed(2)), markPercent: '25%' },
-                  { opacity: Number((0.1 * backgroundRgb.opacity).toFixed(2)) },
-                ],
-              }),
+              borderImage: borderGradient,
+              background: backgroundGradient,
             }}
             className="gradient-grid"
           />

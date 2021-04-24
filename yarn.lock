@@ -3515,10 +3515,10 @@ color-convert@^2.0.1:
   dependencies:
     color-name "~1.1.4"
 
-color-gradient-converter@0.0.0-beta.2:
-  version "0.0.0-beta.2"
-  resolved "https://registry.npmjs.org/color-gradient-converter/-/color-gradient-converter-0.0.0-beta.2.tgz#d66cd4197b2e23b1c9d7a382cc9b660ee05fe9c3"
-  integrity sha512-s09geL/ssqAB2H7kPsVVq6+C7Lmedih+jhhw0wvPYsk/UIYHM25tP4At63UhWGIPFbuhMDqDu/5FbHZQ2r2r4A==
+color-gradient-converter@^0.0.1-beta.6:
+  version "0.0.1-beta.6"
+  resolved "https://registry.npmjs.org/color-gradient-converter/-/color-gradient-converter-0.0.1-beta.6.tgz#0a228929c7a11a797c8546e54f2e91744ea29206"
+  integrity sha512-Qsmw6rvIBAOdBPn8cn9EEtwpXzdmazeiu+1af+bsqAf8y4JFfEk+iJnLrKZDEshxJ63hgsxo9FQEOhACJuxxAQ==
   dependencies:
     "@types/d3-color" "^2.0.1"
     d3-color "^2.0.0"
