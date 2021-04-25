@@ -11,6 +11,7 @@ https://my-react-app-linwrui.vercel.app
 
 * [Home](https://my-react-app-linwrui.vercel.app/#/home) 
 * [Game](https://my-react-app-linwrui.vercel.app/#/game) 
+* [ColorGradientDemo](https://my-react-app-linwrui.vercel.app/#/color-gradient)
 
 # Getting Started with Create React App
 
