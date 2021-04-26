@@ -1,5 +1,5 @@
 import { Form, InputNumber } from 'antd';
-import { rgb } from 'd3-color';
+import { HSLColor, rgb } from 'd3-color';
 import React from 'react';
 import { RgbaColorPicker } from 'react-colorful';
 import { colorToLinearGradient, LinearGradientConvertOptions } from "color-gradient-converter";
@@ -35,23 +35,28 @@ export class ColorGradient extends React.Component<unknown, ColorGradientState> 
     const { backgroundColor, transformParams, backgroundblur, borderColor, borderWidth, borderRadius } = this.state;
     const backgroundRgb = rgb(backgroundColor);
     const borderRgb = rgb(borderColor);
+    const transformFn = (baseColor: HSLColor, transformTarget: HSLColor) => {
+      const target = transformTarget;
+      target.opacity = Number((baseColor.opacity * target.opacity).toFixed(2));
+      return target;
+    }
     const borderGradient = `${colorToLinearGradient(borderColor, {
       ...transformParams,
       colorStopTransformTargets: [
-        { opacity: 0.1 },
-        { opacity: 0.6 },
-        { opacity: 0.2 },
-        { opacity: 0.2 },
-        { opacity: 0.6 },
-        { opacity: 0.1 },
-      ].map(x => ({ opacity: Number((x.opacity * borderRgb.opacity).toFixed(2)) })),
+        { opacity: 0.1, transformFn },
+        { opacity: 0.6, transformFn },
+        { opacity: 0.2, transformFn },
+        { opacity: 0.2, transformFn },
+        { opacity: 0.6, transformFn },
+        { opacity: 0.1, transformFn },
+      ],
     })} 10`;
     const backgroundGradient = colorToLinearGradient(backgroundColor, {
       ...transformParams,
       colorStopTransformTargets: [
-        { opacity: Number((0.4 * backgroundRgb.opacity).toFixed(2)) },
-        { opacity: Number((0.2 * backgroundRgb.opacity).toFixed(2)), markPercent: '25%' },
-        { opacity: Number((0.1 * backgroundRgb.opacity).toFixed(2)) },
+        { opacity: 0.4, transformFn },
+        { opacity: 0.2, transformFn, markPercent: '25%' },
+        { opacity: 0.1, transformFn },
       ],
     });
     return (

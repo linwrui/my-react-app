@@ -2362,11 +2362,6 @@ ajv@^7.0.2:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-almost-equal@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/almost-equal/download/almost-equal-1.1.0.tgz#f851c631138757994276aa2efbe8dfa3066cccdd"
-  integrity sha1-+FHGMROHV5lCdqou++jfowZszN0=
-
 alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
@@ -3515,10 +3510,10 @@ color-convert@^2.0.1:
   dependencies:
     color-name "~1.1.4"
 
-color-gradient-converter@^0.0.1-beta.6:
-  version "0.0.1-beta.6"
-  resolved "https://registry.npmjs.org/color-gradient-converter/-/color-gradient-converter-0.0.1-beta.6.tgz#0a228929c7a11a797c8546e54f2e91744ea29206"
-  integrity sha512-Qsmw6rvIBAOdBPn8cn9EEtwpXzdmazeiu+1af+bsqAf8y4JFfEk+iJnLrKZDEshxJ63hgsxo9FQEOhACJuxxAQ==
+color-gradient-converter@^0.0.1-beta.8:
+  version "0.0.1-beta.8"
+  resolved "https://registry.nlark.com/color-gradient-converter/download/color-gradient-converter-0.0.1-beta.8.tgz#21e2349fc0d2ef5c02507495bbf453a60627bbca"
+  integrity sha1-IeI0n8DS71wCUHSVu/RTpgYnu8o=
   dependencies:
     "@types/d3-color" "^2.0.1"
     d3-color "^2.0.0"
@@ -3532,29 +3527,6 @@ color-name@^1.0.0, color-name@~1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
-
-color-parse@^1.4.1:
-  version "1.4.2"
-  resolved "https://registry.npm.taobao.org/color-parse/download/color-parse-1.4.2.tgz#78651f5d34df1a57f997643d86f7f87268ad4eb5"
-  integrity sha1-eGUfXTTfGlf5l2Q9hvf4cmitTrU=
-  dependencies:
-    color-name "^1.0.0"
-
-color-rgba@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.npm.taobao.org/color-rgba/download/color-rgba-2.2.3.tgz#f7f1240de7edc5fcafa79c4acb013a8eb2075aa0"
-  integrity sha1-9/EkDeftxfyvp5xKywE6jrIHWqA=
-  dependencies:
-    color-parse "^1.4.1"
-    color-space "^1.14.6"
-
-color-space@^1.14.6:
-  version "1.16.0"
-  resolved "https://registry.npm.taobao.org/color-space/download/color-space-1.16.0.tgz#611781bca41cd8582a1466fd9e28a7d3d89772a2"
-  integrity sha1-YReBvKQc2FgqFGb9niin09iXcqI=
-  dependencies:
-    hsluv "^0.0.3"
-    mumath "^3.3.4"
 
 color-string@^1.5.4:
   version "1.5.4"
@@ -5856,11 +5828,6 @@ hsla-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/hsla-regex/-/hsla-regex-1.0.0.tgz#c1ce7a3168c8c6614033a4b5f7877f3b225f9c38"
   integrity sha1-wc56MWjIxmFAM6S194d/OyJfnDg=
 
-hsluv@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npm.taobao.org/hsluv/download/hsluv-0.0.3.tgz#829107dafb4a9f8b52a1809ed02e091eade6754c"
-  integrity sha1-gpEH2vtKn4tSoYCe0C4JHq3mdUw=
-
 html-comment-regex@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.2.tgz#97d4688aeb5c81886a364faa0cad1dda14d433a7"
@@ -7791,13 +7758,6 @@ multicast-dns@^6.0.1:
   dependencies:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
-
-mumath@^3.3.4:
-  version "3.3.4"
-  resolved "https://registry.npm.taobao.org/mumath/download/mumath-3.3.4.tgz#48d4a0f0fd8cad4e7b32096ee89b161a63d30bbf"
-  integrity sha1-SNSg8P2MrU57Mglu6JsWGmPTC78=
-  dependencies:
-    almost-equal "^1.1.0"
 
 nan@^2.12.1:
   version "2.14.2"
