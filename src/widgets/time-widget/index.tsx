@@ -46,7 +46,7 @@ export class TimeWidget extends React.Component<TimeWidgetProps, TimeWidgetState
         </div>
         <div className="date">
           <span>
-            {numberToString(now.getFullYear())} / {numberToString(now.getMonth())} / {numberToString(now.getDate())}
+            {numberToString(now.getFullYear())} / {numberToString(now.getMonth() + 1)} / {numberToString(now.getDate())}
           </span>
         </div>
       </div>
