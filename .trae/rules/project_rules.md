@@ -1,146 +1,106 @@
 ---
 alwaysApply: true
 ---
+
 # 项目通用规则
 
 ## 技术栈
-- **前端框架**: React 17.x + TypeScript
-- **UI 组件库**: Ant Design 4.12.x
-- **路由管理**: React Router 5.x
-- **样式方案**: Less
-- **HTTP 客户端**: Axios
-- **构建工具**: Create React App + react-app-rewired
+- **前端框架**：React 17.0.1
+- **开发语言**：TypeScript 4.2.2
+- **UI 组件库**：Ant Design 4.12.3
+- **样式预处理器**：Less
+- **路由**：React Router 5.2.0
+- **HTTP 客户端**：Axios
+- **图标库**：@ant-design/icons
 
-## 项目结构
+## 项目结构规范
+
+### 目录组织
 ```
 src/
-├── @types/           # 类型声明文件
-├── assets/           # 静态资源（图片等）
-├── components/       # 通用组件
-├── navigation/       # 导航组件
-├── pages/            # 页面组件
-│   ├── color-gradient/
-│   ├── game/
-│   │   ├── 24-point-game/
-│   │   └── board-game/
-│   └── home/
-├── utils/            # 工具函数
-├── widgets/          # 小组件
-│   ├── poker-widget/
-│   ├── time-widget/
-│   └── weather-widget/
-├── index.tsx         # 应用入口
-└── setupProxy.js     # 代理配置
+├── components/      # 通用组件
+├── pages/          # 页面组件
+├── widgets/        # 小部件组件
+├── utils/          # 工具函数
+├── navigation/     # 导航组件
+├── assets/         # 静态资源
+└── @types/         # TypeScript 类型定义
 ```
+
+### 文件命名规范
+- 组件文件：使用 kebab-case 命名，如 `color-gradient/index.tsx`
+- 样式文件：与组件同名，使用 `style.less`
+- 工具函数：使用 kebab-case 命名，如 `color-util.ts`
+- 类型定义：使用 kebab-case 命名，如 `index.d.ts`
 
 ## 代码风格规范
 
-### TypeScript 规范
+### 组件编写规范
+- 优先使用类组件（Class Component），保持与现有代码风格一致
+- 组件文件应包含对应的样式文件
+- 组件导出使用命名导出，如 `export class Home extends React.Component`
+- 组件 Props 和 State 必须定义 TypeScript 接口
+
+### 样式编写规范
+- 使用 Less 作为样式预处理器
+- 样式文件与组件文件分离，命名为 `style.less`
+- 使用 BEM 命名规范或类似语义化命名
+- 避免使用内联样式，优先使用类名样式
+
+### 类型定义规范
+- 所有组件必须定义 Props 和 State 接口
+- 工具函数必须有明确的参数和返回值类型
 - 使用 TypeScript 严格模式
-- 组件使用 Class Component 写法
-- 为所有组件定义 Props 和 State 接口
-- 使用 `interface` 定义对象类型，使用 `type` 定义联合类型
+- 类型定义放在 `@types` 目录或组件文件内部
 
-### React 组件规范
-- 组件文件命名使用 kebab-case（如 `time-widget/index.tsx`）
-- 组件导出使用 `export class` 或 `export const`
-- 类组件继承 `React.Component<Props, State>`
-- 使用 `constructor` 初始化 state
-- 生命周期方法按顺序排列：`componentDidMount` → `componentDidUpdate` → `componentWillUnmount`
-- 使用 `this.setState` 更新状态，避免直接修改 state
+### 注释规范
+- 使用 JSDoc 风格的注释
+- 函数必须有注释说明功能、参数和返回值
+- 复杂逻辑需要添加行内注释
+- 注释使用中文描述
 
-### 样式规范
-- 样式文件使用 Less 语法，文件扩展名为 `.less`
-- 每个组件目录下包含对应的 `style.less` 文件
-- 使用 BEM 命名规范：`block__element--modifier`
-- 避免使用内联样式，优先使用 class
+### 组件库使用规范
+- 优先使用 Ant Design 组件
+- 图标使用 `@ant-design/icons` 或通过 `createFromIconfontCN` 创建的图标字体
+- 组件属性使用 TypeScript 类型定义
 
-### Ant Design 使用规范
-- 优先使用 Ant Design 组件库
-- 图标使用 `@ant-design/icons` 中的图标组件
-- 按需引入组件：`import { Layout, Menu } from 'antd'`
+### 导入规范
+- 导入顺序：React 相关 → 第三方库 → 项目内部组件 → 工具函数 → 样式文件
+- 使用绝对路径导入，避免相对路径
+- 按功能分组导入，每组之间空一行
 
-### 代码格式化
-- 使用 Prettier 进行代码格式化
-- 缩进：2 空格
-- 单引号：字符串使用单引号，JSX 使用双引号
-- 分号：语句末尾使用分号
-- 每行最大长度：120 字符
-- 尾随逗号：ES5 标准
+## 开发流程规范
 
-### ESLint 规则
-- 遵循 `airbnb-typescript` 规范
-- 允许使用 `@typescript-eslint/no-explicit-any`
-- 允许使用 `no-console`
-- 单个文件最多 6 个类
-- 忽略 `class-methods-use-this` 规则
-
-## 命名规范
-- 组件名称：PascalCase（如 `TimeWidget`）
-- 文件名：kebab-case（如 `time-widget/index.tsx`）
-- 变量/函数：camelCase（如 `handleImgLoaded`）
-- 常量：UPPER_SNAKE_CASE（如 `defaultTransformParams`）
-- 类名：PascalCase（如 `Navigation`）
-- 接口：PascalCase，以 `I` 开头或直接使用描述性名称（如 `StateType`）
-
-## 导入顺序
-1. React 相关
-2. 第三方库
-3. 内部组件/工具
-4. 样式文件
-
-示例：
-```typescript
-import React from 'react';
-import { Layout, Tooltip } from 'antd';
-import axios from 'axios';
-import { getReverseForegroundColor } from '../../utils/color-util';
-import { TimeWidget } from '../../widgets/time-widget';
-import './style.less';
+### 启动项目
+```bash
+yarn start
 ```
 
-## 状态管理
-- 使用 React 内置 state 进行状态管理
-- 对于复杂状态，考虑使用 `componentDidMount` 进行初始化
-- 使用 `componentWillUnmount` 清理副作用（如定时器、事件监听器）
+### 构建项目
+```bash
+yarn build
+```
 
-## 事件处理
-- 事件处理函数使用箭头函数或绑定 `this`
-- 事件命名以 `handle` 开头（如 `handleImgLoaded`）
-- 使用 `React.SyntheticEvent` 类型定义事件参数
+### 测试项目
+```bash
+yarn test
+```
 
-## 路由管理
-- 使用 `react-router-dom` 进行路由管理
-- 路由配置集中在 `navigation/index.tsx` 中
-- 使用 `RouteComponentProps` 获取路由参数
+## 代码质量规范
 
-## API 请求
-- 使用 Axios 进行 HTTP 请求
-- API 请求放在 `componentDidMount` 中
-- 处理组件卸载时的请求取消（使用 `willUnmounted` 标志）
+### ESLint 配置
+- 使用 Airbnb TypeScript 规范
+- 配合 Prettier 进行代码格式化
+- 提交代码前必须通过 ESLint 检查
 
-## 工具函数
-- 工具函数放在 `src/utils/` 目录下
-- 工具函数使用纯函数，避免副作用
-- 为工具函数添加类型注解
+### TypeScript 配置
+- 启用严格模式
+- 启用所有类型检查选项
+- 配置路径别名（如需要）
 
-## 组件通信
-- 父子组件通信：通过 props 传递数据
-- 事件回调：通过 props 传递回调函数
-- 避免过度使用 context，优先使用 props
-
-## 性能优化
-- 使用 `React.memo` 对函数组件进行优化
-- 避免在 render 方法中创建新函数
-- 合理使用 `shouldComponentUpdate` 优化类组件
-
-## 注释规范
-- 为复杂逻辑添加注释
-- 注释使用中文
-- 保持注释简洁明了
-- 避免无意义的注释
-
-## 开发命令
-- 启动开发服务器：`yarn start`
-- 构建生产版本：`yarn build`
-- 运行测试：`yarn test`
+## 其他注意事项
+- 使用 HashRouter 进行路由管理
+- 使用 axios 进行 HTTP 请求，配合 setupProxy.js 进行代理配置
+- 使用 react-app-rewired 进行自定义 webpack 配置
+- 静态资源放在 `public` 目录或 `src/assets` 目录
+- 组件卸载时清理副作用（如定时器、事件监听器）
