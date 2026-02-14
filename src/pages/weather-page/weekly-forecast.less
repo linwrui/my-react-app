@@ -1,0 +1,180 @@
+.weekly-forecast-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+
+  .ant-card-head {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 32px;
+
+    .ant-card-head-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .ant-card-body {
+    padding: 24px 32px;
+  }
+
+  .forecast-item {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 12px;
+    padding: 20px 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .forecast-date {
+      margin-bottom: 12px;
+
+      .weekday {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .date {
+        font-size: 12px;
+        opacity: 0.8;
+      }
+    }
+
+    .forecast-icon {
+      margin: 12px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 56px;
+    }
+
+    .forecast-weather {
+      font-size: 14px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .forecast-temp {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      font-size: 16px;
+      font-weight: 600;
+
+      .temp-high {
+        color: #ff6b6b;
+      }
+
+      .temp-divider {
+        opacity: 0.6;
+      }
+
+      .temp-low {
+        color: #4ecdc4;
+      }
+    }
+
+    &:hover .forecast-temp {
+      .temp-high,
+      .temp-low {
+        color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .weekly-forecast-card {
+    .ant-card-head {
+      padding: 16px 20px;
+
+      .ant-card-head-title {
+        font-size: 18px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 16px 20px;
+    }
+
+    .forecast-item {
+      padding: 16px 8px;
+
+      .forecast-date {
+        .weekday {
+          font-size: 14px;
+        }
+
+        .date {
+          font-size: 11px;
+        }
+      }
+
+      .forecast-icon {
+        margin: 8px 0;
+        height: 48px;
+      }
+
+      .forecast-weather {
+        font-size: 12px;
+      }
+
+      .forecast-temp {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .weekly-forecast-card {
+    .ant-card-head {
+      padding: 12px 16px;
+
+      .ant-card-head-title {
+        font-size: 16px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 12px 16px;
+    }
+
+    .forecast-item {
+      padding: 12px 6px;
+
+      .forecast-date {
+        .weekday {
+          font-size: 13px;
+        }
+
+        .date {
+          font-size: 10px;
+        }
+      }
+
+      .forecast-icon {
+        margin: 6px 0;
+        height: 40px;
+      }
+
+      .forecast-weather {
+        font-size: 11px;
+      }
+
+      .forecast-temp {
+        font-size: 13px;
+      }
+    }
+  }
+}

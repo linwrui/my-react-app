@@ -1,8 +1,8 @@
 import { EnvironmentOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
-import axios from 'axios';
 import React from 'react';
 import { WeatherIconFont } from '../../components/iconfont';
+import { WeatherService } from '../../utils/weather-service';
 import './style.less';
 
 function WeatherIcon(props: { wea: string; weaImag: string }) {
@@ -48,12 +48,11 @@ export class WeatherWidget extends React.Component<WeatherWidgetProps, WeatherWi
 
   componentDidMount() {
     this._isMounted = true;
-    axios.get('/weather/api?version=v6&appid=42734629&appsecret=MA2q7dbR')
-      .then(weather => {
+    WeatherService.getWeatherData()
+      .then(weatherData => {
         if (!this._isMounted) return;
-        console.log(weather.data);
         this.setState({
-          weatherData: weather.data,
+          weatherData,
         });
       })
       .catch(error => {

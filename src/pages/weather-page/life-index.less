@@ -1,0 +1,171 @@
+.life-index-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+  .ant-card-head {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 32px;
+
+    .ant-card-head-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .ant-card-body {
+    padding: 24px 32px;
+  }
+
+  .index-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .index-icon {
+      font-size: 32px;
+      color: #667eea;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .index-content {
+      flex: 1;
+
+      .index-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #333;
+      }
+
+      .index-value {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: #667eea;
+      }
+
+      .index-desc {
+        font-size: 12px;
+        color: #666;
+        line-height: 1.5;
+      }
+    }
+
+    &:hover .index-content {
+      .index-title,
+      .index-value,
+      .index-desc {
+        color: white;
+      }
+    }
+
+    &:hover .index-icon {
+      color: white;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .life-index-card {
+    .ant-card-head {
+      padding: 16px 20px;
+
+      .ant-card-head-title {
+        font-size: 18px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 16px 20px;
+    }
+
+    .index-item {
+      padding: 16px;
+      gap: 12px;
+
+      .index-icon {
+        font-size: 28px;
+        width: 44px;
+        height: 44px;
+      }
+
+      .index-content {
+        .index-title {
+          font-size: 14px;
+        }
+
+        .index-value {
+          font-size: 13px;
+        }
+
+        .index-desc {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .life-index-card {
+    .ant-card-head {
+      padding: 12px 16px;
+
+      .ant-card-head-title {
+        font-size: 16px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 12px 16px;
+    }
+
+    .index-item {
+      padding: 12px;
+      gap: 10px;
+
+      .index-icon {
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+      }
+
+      .index-content {
+        .index-title {
+          font-size: 13px;
+        }
+
+        .index-value {
+          font-size: 12px;
+        }
+
+        .index-desc {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

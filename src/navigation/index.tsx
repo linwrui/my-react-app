@@ -6,6 +6,7 @@ import { Game } from '../pages/game';
 import './style.less';
 import { Home } from '../pages/home';
 import { ColorGradient } from '../pages/color-gradient';
+import { WeatherPage } from '../pages/weather-page';
 import { withRouter, WithRouterProps } from '../utils/with-router';
 
 const { Sider, Content } = Layout;
@@ -42,6 +43,11 @@ class NavigationComponent extends React.Component<NavigationProps, NavigationSta
           linkTo: '/color-gradient',
           title: 'ColorGradient',
           component: ColorGradient,
+        },
+        {
+          linkTo: '/weather',
+          title: 'Weather',
+          component: WeatherPage,
         },
       ],
       collapsed: true,

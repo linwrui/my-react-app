@@ -13,7 +13,7 @@ module.exports = function(app) {
       },
     }),
     createProxyMiddleware('/weather', {
-      target: 'https://tianqiapi.com',
+      target: 'http://gfeljm.tianqiapi.com',
       secure: false,
       changeOrigin: true,
       pathRewrite: {
