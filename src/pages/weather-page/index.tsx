@@ -98,12 +98,12 @@ export class WeatherPage extends React.Component<any, StateType> {
               <WeatherAlert alerts={weatherData.alerts} />
               <CurrentWeather data={weatherData} />
               <HourlyForecast hourly={weatherData.hourly} />
-              <WeeklyForecast data={weatherData} />
+              <WeeklyForecast />
               <LifeIndex data={weatherData} />
               <WeatherDetails data={weatherData} />
               <div className="debug-section">
                 <Collapse defaultActiveKey={[]}>
-                  <Collapse.Panel header="调试信息 (API原始数据)" key="1">
+                  <Collapse.Panel header="调试信息 (API原始数据 - v63)" key="1">
                     <pre style={{ fontSize: '12px', maxHeight: '400px', overflow: 'auto', background: '#f5f5f5', padding: '16px', borderRadius: '4px' }}>
                       {JSON.stringify(weatherData, null, 2)}
                     </pre>

@@ -2,7 +2,6 @@ import {
   EnvironmentOutlined,
   CloudOutlined,
   ThunderboltOutlined,
-  SunOutlined,
   RiseOutlined,
   FallOutlined,
   ThunderboltFilled,

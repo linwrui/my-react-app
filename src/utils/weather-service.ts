@@ -97,9 +97,9 @@ export class WeatherService {
         appsecret: this.APP_SECRET,
       },
     });
-    console.log('原始API数据:', response.data);
+    console.log('原始API数据(v63):', response.data);
     const transformedData = this.transformData(response.data);
-    console.log('转换后的数据:', transformedData);
+    console.log('转换后的数据(v63):', transformedData);
     return transformedData;
   }
 
