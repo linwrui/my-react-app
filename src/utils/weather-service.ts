@@ -11,47 +11,11 @@ export interface HourlyData {
   aqi: string;
 }
 
-export interface AirQualityData {
-  aqi: string;
-  aqi_level: string;
-  aqi_desc: string;
-  pm25: string;
-  pm10: string;
-  o3: string;
-  no2: string;
-  so2: string;
-  co: string;
-  kouzhao: string;
-  yundong: string;
-  kaichuang: string;
-  jinghuaqi: string;
-}
-
 export interface AlertData {
   alert_title: string;
   alert_level: string;
   alert_type: string;
   alert_content: string;
-}
-
-export interface DailyForecast {
-  date: string;
-  week: string;
-  wea: string;
-  wea_img: string;
-  tem1: string;
-  tem2: string;
-  win: string;
-  win_speed: string;
-  air: string;
-  air_level: string;
-  air_tips: string;
-  hours: HourlyData[];
-  index: Array<{
-    title: string;
-    level: string;
-    desc: string;
-  }>;
 }
 
 export interface WeatherData {
@@ -74,9 +38,27 @@ export interface WeatherData {
   sun_rise: string;
   sun_set: string;
   update_time: string;
-  forecast: DailyForecast[];
+  forecast: Array<{
+    date: string;
+    week: string;
+    wea: string;
+    wea_img: string;
+    tem1: string;
+    tem2: string;
+    win: string;
+    win_speed: string;
+    air: string;
+    air_level: string;
+    air_tips: string;
+    hours: HourlyData[];
+    index: Array<{
+      title: string;
+      level: string;
+      desc: string;
+    }>;
+    [key: string]: any;
+  }>;
   hourly: HourlyData[];
-  air_quality: AirQualityData;
   alerts: AlertData[];
   uv: string;
   uv_desc: string;
@@ -133,21 +115,6 @@ export class WeatherService {
       update_time: data.update_time || '',
       forecast: dailyForecast,
       hourly: hours,
-      air_quality: {
-        aqi: data.air || data.aqi || '',
-        aqi_level: data.air_level || data.aqi_level || '',
-        aqi_desc: data.air_tips || data.aqi_desc || '',
-        pm25: data.pm25 || '',
-        pm10: data.pm10 || '',
-        o3: data.o3 || '',
-        no2: data.no2 || '',
-        so2: data.so2 || '',
-        co: data.co || '',
-        kouzhao: data.kouzhao || '',
-        yundong: data.yundong || '',
-        kaichuang: data.kaichuang || '',
-        jinghuaqi: data.jinghuaqi || '',
-      },
       alerts: data.alert || data.alerts || [],
       uv: data.uv || '',
       uv_desc: data.uv_desc || '',

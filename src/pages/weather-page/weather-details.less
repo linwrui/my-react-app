@@ -1,5 +1,23 @@
 .weather-details-card {
-  margin-bottom: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+
+  .ant-card-head {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 32px;
+
+    .ant-card-head-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .ant-card-body {
+    padding: 24px 32px;
+  }
 
   .detail-section-title {
     font-size: 15px;
@@ -17,6 +35,38 @@
 
     .ant-descriptions-item-content {
       color: #333;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-details-card {
+    .ant-card-head {
+      padding: 16px 20px;
+
+      .ant-card-head-title {
+        font-size: 18px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 16px 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .weather-details-card {
+    .ant-card-head {
+      padding: 12px 16px;
+
+      .ant-card-head-title {
+        font-size: 16px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 12px 16px;
     }
   }
 }
