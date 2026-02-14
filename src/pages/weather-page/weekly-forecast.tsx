@@ -33,6 +33,7 @@ export class WeeklyForecast extends React.Component<WeeklyForecastProps> {
                 <div className="forecast-date">
                   <div className="weekday">{this.getWeekdayName(day.date)}</div>
                   <div className="date">{this.formatDate(day.date)}</div>
+                  {day.week && <div className="week">{day.week}</div>}
                 </div>
                 <div className="forecast-icon">
                   <WeatherIcon wea={day.wea} weaImg={day.wea_img} size={48} />
@@ -43,6 +44,18 @@ export class WeeklyForecast extends React.Component<WeeklyForecastProps> {
                   <span className="temp-divider">/</span>
                   <span className="temp-low">{day.tem2}°</span>
                 </div>
+                {(day.win || day.win_speed) && (
+                  <div className="forecast-wind">
+                    {day.win && <span>{day.win}</span>}
+                    {day.win_speed && <span> {day.win_speed}</span>}
+                  </div>
+                )}
+                {(day.air || day.air_level) && (
+                  <div className="forecast-air">
+                    {day.air && <span>AQI: {day.air}</span>}
+                    {day.air_level && <span> {day.air_level}</span>}
+                  </div>
+                )}
               </div>
             </Col>
           ))}

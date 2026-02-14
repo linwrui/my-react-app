@@ -6,7 +6,7 @@
   margin-bottom: 24px;
 
   .ant-card-body {
-    padding: 32px;
+    padding: 20px 24px;
   }
 
   .weather-main {
@@ -14,144 +14,327 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 8px 12px;
 
     .location {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
 
       .city-name {
-        font-size: 28px;
+        font-size: 20px;
       }
     }
 
     .weather-icon-wrapper {
-      margin: 20px 0;
+      margin: 6px 0;
     }
 
     .weather-type {
-      font-size: 28px;
+      font-size: 18px;
       font-weight: 500;
-      margin-bottom: 16px;
+      margin-bottom: 4px;
     }
 
     .temperature {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 4px;
 
       .temp-value {
-        font-size: 72px;
+        font-size: 44px;
         font-weight: bold;
         line-height: 1;
       }
 
       .temp-unit {
-        font-size: 32px;
-        margin-top: 8px;
-        margin-left: 4px;
+        font-size: 22px;
+        margin-top: 4px;
+        margin-left: 2px;
       }
     }
 
     .temp-range {
-      font-size: 18px;
-      opacity: 0.9;
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 8px;
+    }
+
+    .sun-time {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      opacity: 0.85;
+
+      .sun-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
     }
   }
 
-  .weather-details {
-    .detail-item {
-      background: rgba(255, 255, 255, 0.15);
+  .weather-details-grid {
+    margin-bottom: 12px;
+
+    .detail-card {
+      background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       transition: all 0.3s ease;
+      height: 100%;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.18);
         transform: translateY(-2px);
       }
 
       .detail-icon {
-        font-size: 28px;
-        margin-bottom: 8px;
+        font-size: 26px;
         opacity: 0.9;
+        flex-shrink: 0;
       }
 
-      .detail-label {
-        font-size: 14px;
-        opacity: 0.8;
-        margin-bottom: 4px;
+      .detail-info {
+        flex: 1;
+        min-width: 0;
+
+        .detail-value {
+          font-size: 17px;
+          font-weight: 600;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .detail-label {
+          font-size: 12px;
+          opacity: 0.7;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+
+  .air-quality-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    .air-left {
+      flex-shrink: 0;
+
+      .air-aqi-circle {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        border: 3px solid;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.12);
+
+        .air-aqi-value {
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .air-aqi-label {
+          font-size: 10px;
+          opacity: 0.75;
+          margin-top: 2px;
+        }
+      }
+    }
+
+    .air-right {
+      flex: 1;
+
+      .air-status {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 6px;
+
+        .air-level-text {
+          font-size: 22px;
+          font-weight: 700;
+        }
+
+        .air-level-desc {
+          font-size: 13px;
+          opacity: 0.75;
+        }
       }
 
-      .detail-value {
-        font-size: 18px;
-        font-weight: 600;
+      .air-suggestion {
+        font-size: 13px;
+        line-height: 1.5;
+        opacity: 0.85;
       }
     }
   }
 
   .update-time {
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    opacity: 0.7;
+    font-size: 12px;
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 1200px) {
+  .current-weather-card {
+    .weather-details-grid {
+      .detail-card {
+        padding: 12px 14px;
+
+        .detail-icon {
+          font-size: 24px;
+        }
+
+        .detail-info {
+          .detail-value {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    .air-quality-card {
+      padding: 12px 14px;
+
+      .air-left .air-aqi-circle {
+        width: 60px;
+        height: 60px;
+
+        .air-aqi-value {
+          font-size: 22px;
+        }
+      }
+
+      .air-right .air-status .air-level-text {
+        font-size: 20px;
+      }
+    }
   }
 }
 
 @media (max-width: 768px) {
   .current-weather-card {
     .ant-card-body {
-      padding: 20px;
+      padding: 16px 20px;
     }
 
     .weather-main {
+      padding: 12px 0;
+      margin-bottom: 12px;
+
       .location {
-        font-size: 20px;
+        font-size: 16px;
 
         .city-name {
-          font-size: 24px;
+          font-size: 18px;
         }
       }
 
+      .weather-icon-wrapper {
+        margin: 8px 0;
+      }
+
       .weather-type {
-        font-size: 24px;
+        font-size: 16px;
       }
 
       .temperature {
         .temp-value {
-          font-size: 60px;
+          font-size: 40px;
         }
 
         .temp-unit {
-          font-size: 28px;
+          font-size: 20px;
         }
       }
 
       .temp-range {
-        font-size: 16px;
+        font-size: 13px;
+      }
+
+      .sun-time {
+        font-size: 11px;
       }
     }
 
-    .weather-details {
-      .detail-item {
-        padding: 16px;
+    .weather-details-grid {
+      .detail-card {
+        padding: 10px 12px;
 
         .detail-icon {
-          font-size: 24px;
+          font-size: 22px;
         }
 
-        .detail-label {
+        .detail-info {
+          .detail-value {
+            font-size: 15px;
+          }
+
+          .detail-label {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+
+    .air-quality-card {
+      flex-direction: column;
+      text-align: center;
+      gap: 10px;
+      padding: 12px;
+
+      .air-left .air-aqi-circle {
+        width: 56px;
+        height: 56px;
+
+        .air-aqi-value {
+          font-size: 20px;
+        }
+
+        .air-aqi-label {
+          font-size: 9px;
+        }
+      }
+
+      .air-right {
+        .air-status {
+          flex-direction: column;
+          gap: 4px;
+
+          .air-level-text {
+            font-size: 18px;
+          }
+
+          .air-level-desc {
+            font-size: 12px;
+          }
+        }
+
+        .air-suggestion {
           font-size: 12px;
-        }
-
-        .detail-value {
-          font-size: 16px;
         }
       }
     }
@@ -162,29 +345,33 @@
   .current-weather-card {
     .weather-main {
       .location {
-        font-size: 18px;
+        font-size: 15px;
 
         .city-name {
-          font-size: 20px;
+          font-size: 16px;
         }
       }
 
       .weather-type {
-        font-size: 20px;
+        font-size: 15px;
       }
 
       .temperature {
         .temp-value {
-          font-size: 48px;
+          font-size: 36px;
         }
 
         .temp-unit {
-          font-size: 24px;
+          font-size: 18px;
         }
       }
 
       .temp-range {
-        font-size: 14px;
+        font-size: 12px;
+      }
+
+      .sun-time {
+        gap: 8px;
       }
     }
   }

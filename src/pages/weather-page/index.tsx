@@ -1,9 +1,12 @@
-import { Layout, Spin, Alert } from 'antd';
+import { Layout, Spin, Alert, Collapse } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import React from 'react';
 import { CurrentWeather } from './current-weather';
 import { WeeklyForecast } from './weekly-forecast';
+import { HourlyForecast } from './hourly-forecast';
+import { WeatherAlert } from './weather-alert';
 import { LifeIndex } from './life-index';
+import { WeatherDetails } from './weather-details';
 import { WeatherService } from '../../utils/weather-service';
 import './style.less';
 
@@ -92,9 +95,21 @@ export class WeatherPage extends React.Component<any, StateType> {
           )}
           {!loading && !error && weatherData && (
             <div className="page-content">
+              <WeatherAlert alerts={weatherData.alerts} />
               <CurrentWeather data={weatherData} />
+              <HourlyForecast hourly={weatherData.hourly} />
               <WeeklyForecast data={weatherData} />
               <LifeIndex data={weatherData} />
+              <WeatherDetails data={weatherData} />
+              <div className="debug-section">
+                <Collapse defaultActiveKey={[]}>
+                  <Collapse.Panel header="调试信息 (API原始数据)" key="1">
+                    <pre style={{ fontSize: '12px', maxHeight: '400px', overflow: 'auto', background: '#f5f5f5', padding: '16px', borderRadius: '4px' }}>
+                      {JSON.stringify(weatherData, null, 2)}
+                    </pre>
+                  </Collapse.Panel>
+                </Collapse>
+              </div>
             </div>
           )}
         </Content>
