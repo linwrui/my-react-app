@@ -20,7 +20,7 @@ export class HourlyForecast extends React.Component<HourlyForecastProps> {
     return (
       <Card className="hourly-forecast-card" bordered={false} title="24小时逐小时预报">
         <div className="hourly-scroll-container">
-          <Row className="hourly-list" gutter={[16, 16]}>
+          <Row className="hourly-list">
             {hourly.map((hour) => (
               <Col key={hour.hours || `${hour.tem}-${hour.wea}`} className="hourly-item">
                 <div className="hour">{hour.hours}</div>

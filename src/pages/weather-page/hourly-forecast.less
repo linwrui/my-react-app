@@ -1,9 +1,28 @@
 .hourly-forecast-card {
-  margin-bottom: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+
+  .ant-card-head {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 32px;
+
+    .ant-card-head-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  .ant-card-body {
+    padding: 24px 32px;
+  }
 
   .hourly-scroll-container {
     overflow-x: auto;
-    padding-bottom: 8px;
+    padding: 4px 8px 12px 8px;
+    margin: 0 -8px;
 
     &::-webkit-scrollbar {
       height: 6px;
@@ -27,47 +46,55 @@
   .hourly-list {
     flex-wrap: nowrap;
     min-width: max-content;
+    display: flex;
+    gap: 12px;
   }
 
   .hourly-item {
     flex: 0 0 auto;
-    min-width: 80px;
+    min-width: 90px;
     text-align: center;
-    padding: 12px 8px;
-    border-radius: 8px;
-    transition: background-color 0.2s;
+    padding: 16px 12px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    transition: all 0.3s ease;
+    cursor: pointer;
 
     &:hover {
-      background-color: #f5f5f5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(135deg, #e8ecf1 0%, #b8c5d9 100%);
     }
 
     .hour {
       font-size: 14px;
       color: #666;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
 
     .icon {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .weather {
-      font-size: 12px;
+      font-size: 13px;
       color: #333;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .temp {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
-      color: #1890ff;
-      margin-bottom: 6px;
+      color: #667eea;
+      margin-bottom: 8px;
     }
 
     .wind {
       font-size: 12px;
       color: #666;
       margin-bottom: 6px;
+      line-height: 1.4;
     }
 
     .aqi {
@@ -81,6 +108,38 @@
       .aqi-value {
         font-weight: 500;
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hourly-forecast-card {
+    .ant-card-head {
+      padding: 16px 20px;
+
+      .ant-card-head-title {
+        font-size: 18px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 16px 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .hourly-forecast-card {
+    .ant-card-head {
+      padding: 12px 16px;
+
+      .ant-card-head-title {
+        font-size: 16px;
+      }
+    }
+
+    .ant-card-body {
+      padding: 12px 16px;
     }
   }
 }
