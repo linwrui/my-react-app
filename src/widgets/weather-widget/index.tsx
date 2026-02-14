@@ -36,27 +36,33 @@ interface WeatherWidgetState {
   };
 }
 export class WeatherWidget extends React.Component<WeatherWidgetProps, WeatherWidgetState> {
-  private willUnmounted = false;
+  private _isMounted = false;
 
   constructor(props: WeatherWidgetProps) {
     super(props);
+    this._isMounted = false;
     this.state = {
       weatherData: {},
     };
   }
 
   componentDidMount() {
-    axios.get('/weather/api?version=v6&appid=42734629&appsecret=MA2q7dbR').then(weather => {
-      if (this.willUnmounted) return;
-      console.log(weather.data);
-      this.setState({
-        weatherData: weather.data,
+    this._isMounted = true;
+    axios.get('/weather/api?version=v6&appid=42734629&appsecret=MA2q7dbR')
+      .then(weather => {
+        if (!this._isMounted) return;
+        console.log(weather.data);
+        this.setState({
+          weatherData: weather.data,
+        });
+      })
+      .catch(error => {
+        console.error('Failed to fetch weather data:', error);
       });
-    });
   }
 
   componentWillUnmount() {
-    this.willUnmounted = true;
+    this._isMounted = false;
   }
 
   render() {

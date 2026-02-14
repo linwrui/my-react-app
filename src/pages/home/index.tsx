@@ -20,10 +20,11 @@ interface StateType {
 }
 
 export class Home extends React.Component<any, StateType> {
-  private willUnmounted = false;
+  private _isMounted = false;
 
   constructor(props: any) {
     super(props);
+    this._isMounted = false;
     this.state = {
       backgroundUrl: '',
       imgLoaded: false,
@@ -33,20 +34,30 @@ export class Home extends React.Component<any, StateType> {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+    console.log('Home component mounted');
     axios
       .get('/bing-api/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
       .then(todyBing => {
-        if (this.willUnmounted) return;
-        console.log(todyBing.data);
+        console.log('Bing API response:', todyBing.data);
+        if (!this._isMounted) return;
         this.setState({
           backgroundUrl: `/bing-api/${todyBing.data.images[0].url}`,
           todyBingImage: todyBing.data.images[0],
+        });
+      })
+      .catch(error => {
+        console.error('Failed to fetch Bing image:', error);
+        if (!this._isMounted) return;
+        this.setState({
+          backgroundUrl: '',
+          imgLoaded: true,
         });
       });
   }
     
   componentWillUnmount() {
-    this.willUnmounted = true;
+    this._isMounted = false;
   }
 
   private handleImgLoaded(event: React.SyntheticEvent<HTMLImageElement>) {
@@ -67,11 +78,15 @@ export class Home extends React.Component<any, StateType> {
           <div className="main-content">
             {imgLoaded ? <WeatherWidget color={foreColor} /> : null}
             {imgLoaded ? <TimeWidget color={foreColor} /> : null}
-            <img
-              onLoad={e => this.handleImgLoaded(e)}
-              alt=""
-              src={backgroundUrl}
-            />
+            {backgroundUrl ? (
+              <img
+                onLoad={e => this.handleImgLoaded(e)}
+                alt=""
+                src={backgroundUrl}
+              />
+            ) : (
+              <div className="loading">加载图片中...</div>
+            )}
           </div>
         </Content>
         <Footer>

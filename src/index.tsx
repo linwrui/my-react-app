@@ -1,18 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Redirect, HashRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { HashRouter } from 'react-router-dom';
 import './style.less';
 import { Navigation } from './navigation';
 
-const routing = (
+const root = createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
   <HashRouter>
     <section style={{ height: '100%' }}>
-      <Route path="/" component={Navigation} />
-      <Route exact path="/">
-        <Redirect to="/home" />
-      </Route>
+      <Navigation />
     </section>
   </HashRouter>
 );
-
-ReactDOM.render(routing, document.getElementById('root'));

@@ -33,6 +33,7 @@
     "no-restricted-syntax": "off",
     "no-underscore-dangle": "off",
     "no-console": "off",
+    "react/require-default-props": "off",
     "react/destructuring-assignment": ["error", "always", { "ignoreClassFields": true }],
     "import/prefer-default-export": ["off"],
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["config-overrides.js", "**/*.test.js", "**/*.spec.js"]}]
